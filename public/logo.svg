@@ -1,0 +1,41 @@
+<svg width="400" height="300" viewBox="0 0 100 230" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="futuristicGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3a43"/>
+      <stop offset="50%" stop-color="#9a5d7a"/>
+      <stop offset="100%" stop-color="#58c29e"/>
+    </linearGradient>
+    
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3a43"/>
+      <stop offset="50%" stop-color="#9a5d7a"/>
+      <stop offset="100%" stop-color="#58c29e"/>
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#softGlow)">
+    <!-- Letra C (ahora empieza en X=0) -->
+    <path d="M0,35 L45,35 L45,55 L20,55 L20,125 L45,125 L45,145 L0,145 L0,35 Z" 
+          fill="url(#futuristicGradient)"/>
+    
+    <!-- Letra P al lado derecho -->
+    <path d="M23,13H17V30h2V23h4a2,2,0,0,0,2-2V15A2,2,0,0,0,23,13Zm-4,8V15h4v6Z" 
+          fill="url(#futuristicGradient)"
+          transform="translate(-70, 15) scale(7)"/>
+  </g>
+  
+  <!-- Anillo adaptado (centrado y sin valores negativos) -->
+  <path d="M2,60 Q-70,20 100,170" 
+        fill="none" 
+        stroke="url(#ringGradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+</svg>

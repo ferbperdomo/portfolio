@@ -1,0 +1,163 @@
+/* Estilos dinámicos para el tema usando variables CSS de globals.css */
+.theme-toggle {
+  background: linear-gradient(135deg, var(--mint-color), var(--purple-color));
+  box-shadow: 0 0 20px var(--glow-color);
+}
+
+.theme-toggle.dark {
+  --mint-color: var(--color-primary-mint);
+  --purple-color: var(--color-primary-purple);
+  --glow-color: var(--color-primary-mint);
+}
+
+.theme-toggle.light {
+  --mint-color: var(--color-primary-wine);
+  --purple-color: var(--color-primary-mint);
+  --glow-color: var(--color-primary-wine);
+}
+
+.navbar-bg {
+  background: linear-gradient(
+    135deg,
+    var(--bg-start),
+    var(--bg-mid),
+    var(--bg-end)
+  );
+}
+
+.navbar-bg.dark {
+  --bg-start: rgba(124, 58, 67, 0.1);
+  --bg-mid: rgba(154, 93, 122, 0.1);
+  --bg-end: rgba(88, 194, 158, 0.1);
+}
+
+.navbar-bg.light {
+  --bg-start: rgba(124, 58, 67, 0.05);
+  --bg-mid: rgba(154, 93, 122, 0.05);
+  --bg-end: rgba(88, 194, 158, 0.05);
+}
+
+.title-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--gradient-start),
+    var(--gradient-mid),
+    var(--gradient-end)
+  );
+}
+
+.title-gradient.dark {
+  --gradient-start: var(--color-primary-mint);
+  --gradient-mid: var(--color-primary-purple);
+  --gradient-end: var(--color-primary-wine);
+}
+
+.title-gradient.light {
+  --gradient-start: var(--color-primary-wine);
+  --gradient-mid: var(--color-primary-purple);
+  --gradient-end: var(--color-primary-mint);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(10px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(-5px) translateY(-10px);
+  }
+  75% {
+    transform: translateX(-10px) translateY(5px);
+  }
+}
+
+.cloud {
+  animation: float 6s ease-in-out infinite;
+}
+
+.cloud:nth-child(2) {
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+
+.cloud:nth-child(3) {
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+/* Estilos para las partículas del tema toggle */
+.theme-particles {
+  left: var(--particle-left);
+  top: var(--particle-top);
+  animation-delay: var(--particle-delay);
+}
+
+.theme-particles:nth-child(1) {
+  --particle-left: 20%;
+  --particle-top: 15%;
+  --particle-delay: 0s;
+}
+
+.theme-particles:nth-child(2) {
+  --particle-left: 32%;
+  --particle-top: 25%;
+  --particle-delay: 0.2s;
+}
+
+.theme-particles:nth-child(3) {
+  --particle-left: 44%;
+  --particle-top: 35%;
+  --particle-delay: 0.4s;
+}
+
+.theme-particles:nth-child(4) {
+  --particle-left: 56%;
+  --particle-top: 45%;
+  --particle-delay: 0.6s;
+}
+
+.theme-particles:nth-child(5) {
+  --particle-left: 68%;
+  --particle-top: 55%;
+  --particle-delay: 0.8s;
+}
+
+.theme-particles:nth-child(6) {
+  --particle-left: 80%;
+  --particle-top: 65%;
+  --particle-delay: 1s;
+}
+
+/* Estilos para el elemento del cielo */
+.sky-element {
+  left: var(--sky-x, 0%);
+  top: var(--sky-y, 20%);
+  background: var(--sky-bg, radial-gradient(circle, #f97316, transparent));
+  box-shadow: var(--sky-shadow, 0 0 30px #f9731660);
+}
+
+/* Estilos para las nubes del cielo */
+.sky-cloud {
+  left: var(--cloud-left, 10%);
+  top: var(--cloud-top, 15%);
+  animation: var(--cloud-animation, float 6s ease-in-out infinite);
+  animation-delay: var(--cloud-delay, 0s);
+}
+
+/* Estilos para las estrellas */
+.sky-star {
+  left: var(--star-left, 5%);
+  top: var(--star-top, 10%);
+  animation-delay: var(--star-delay, 0s);
+}
+
+/* Estilos para las partículas del elemento del cielo */
+.sky-particle {
+  left: var(--particle-left, 15%);
+  top: var(--particle-top, 10%);
+  background: var(--particle-bg, #f97316);
+  animation-delay: var(--particle-delay, 0s);
+}
