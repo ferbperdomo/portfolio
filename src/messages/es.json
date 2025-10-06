@@ -15,5 +15,35 @@
   "theme": {
     "light": "Día",
     "dark": "Noche"
+  },
+  "hero": {
+    "name": "Cristian Perdomo",
+    "subtitle": "Donde la tecnología se encuentra con el arte, donde cada línea de código es un verso, cada proyecto una historia."
+  },
+  "historia": {
+    "title": "Mi Historia",
+    "text1": "Cada proyecto es un hilo en el tapiz de mi carrera. Desde los primeros experimentos con código hasta las creaciones más complejas, cada línea cuenta una historia de crecimiento y descubrimiento.",
+    "text2": "La programación no es solo mi profesión, es mi forma de expresar creatividad, de resolver problemas con elegancia, de construir puentes entre la imaginación y la realidad."
+  },
+  "profesional": {
+    "title": "Mi Arte Digital",
+    "code1": "const creatividad = () => '{\n  return ''infinito'';\n}';",
+    "desc1": "Donde la lógica se encuentra con la creatividad",
+    "code2": "function resolver(problema) '{\n  return elegancia + innovacion;\n}'",
+    "desc2": "Cada problema es una oportunidad de crear algo hermoso",
+    "code3": "const futuro = '{\n  vision: ''sin limites'',\n  pasion: ''eterna''\n}';",
+    "desc3": "Construyendo el futuro con cada línea de código"
+  },
+  "pasiones": {
+    "title": "Más Allá del Código",
+    "text1": "Cuando no estoy programando, me encuentro bordando historias con hilos de colores, tejiendo palabras en poemas, capturando momentos únicos con mi cámara.",
+    "text2": "Cada bordado es como un algoritmo: cada puntada tiene su propósito, cada color su significado, cada patrón cuenta una historia.",
+    "text3": "La poesía y la programación comparten algo fundamental: ambas buscan la belleza en la precisión, la elegancia en la simplicidad."
+  },
+  "cta": {
+    "title": "¿Creamos algo juntos?",
+    "subtitle": "Cada proyecto es una nueva aventura, cada colaboración una oportunidad de crear algo extraordinario.",
+    "projects": "Ver Proyectos",
+    "contact": "Contactar"
   }
 }

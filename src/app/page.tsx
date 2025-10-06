@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import InteractiveSkyNavbar from "../components/InteractiveSkyNavbar";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,12 +51,12 @@ export default function Home() {
                   ? "text-white"
                   : "text-white"
               }`}
-            >
-            </span>
+            ></span>
           </div>
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <InteractiveSkyNavbar
+            <ThemeToggle
+              currentTheme={themeState}
               onThemeChange={handleThemeChange}
               className="h-8"
             />
@@ -172,7 +172,6 @@ export default function Home() {
           >
             Desarrollador Full Stack • Innovador Digital
           </p>
-
         </div>
       </main>
     </div>

@@ -15,5 +15,35 @@
   "theme": {
     "light": "Day",
     "dark": "Night"
+  },
+  "hero": {
+    "name": "Cristian Perdomo",
+    "subtitle": "Where technology meets art, where every line of code is a verse, every project a story."
+  },
+  "historia": {
+    "title": "My Story",
+    "text1": "Every project is a thread in the tapestry of my career. From the first experiments with code to the most complex creations, every line tells a story of growth and discovery.",
+    "text2": "Programming is not just my profession, it's my way of expressing creativity, solving problems with elegance, building bridges between imagination and reality."
+  },
+  "profesional": {
+    "title": "My Digital Art",
+    "code1": "const creativity = () => '{\n  return ''infinite'';\n}';",
+    "desc1": "Where logic meets creativity",
+    "code2": "function solve(problem) '{\n  return elegance + innovation;\n}'",
+    "desc2": "Every problem is an opportunity to create something beautiful",
+    "code3": "const future = '{\n  vision: ''limitless'',\n  passion: ''eternal''\n}';",
+    "desc3": "Building the future with every line of code"
+  },
+  "pasiones": {
+    "title": "Beyond Code",
+    "text1": "When I'm not programming, I find myself embroidering stories with colorful threads, weaving words into poems, capturing unique moments with my camera.",
+    "text2": "Every embroidery is like an algorithm: every stitch has its purpose, every color its meaning, every pattern tells a story.",
+    "text3": "Poetry and programming share something fundamental: both seek beauty in precision, elegance in simplicity."
+  },
+  "cta": {
+    "title": "Shall we create something together?",
+    "subtitle": "Every project is a new adventure, every collaboration an opportunity to create something extraordinary.",
+    "projects": "View Projects",
+    "contact": "Contact"
   }
 }
