@@ -1,0 +1,18 @@
+{
+  "title": "Cristian Perdomo",
+  "subtitle": "Desarrollador Full Stack • Innovador Digital",
+  "menu": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "navigation": {
+    "openMenu": "Abrir menú de navegación",
+    "openMenuTitle": "Abrir menú"
+  },
+  "theme": {
+    "light": "Día",
+    "dark": "Noche"
+  }
+}
+

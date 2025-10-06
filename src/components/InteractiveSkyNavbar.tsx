@@ -48,12 +48,6 @@ const InteractiveSkyNavbar: React.FC<InteractiveSkyNavbarProps> = ({
   const handleThemeChange = (newThemeState: number) => {
     setThemeState(newThemeState);
     onThemeChange?.(newThemeState);
-
-    if (newThemeState === 2) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
   };
 
   const handleDragEnd = () => {
@@ -116,9 +110,11 @@ const InteractiveSkyNavbar: React.FC<InteractiveSkyNavbarProps> = ({
 
   return (
     <div className={`flex items-center ${className}`}>
-      <div className="relative w-16 h-8 bg-transparent rounded-full border border-gray-400 dark:border-gray-500">
+      <div className="relative w-16 h-8 rounded-full border border-gray-400 dark:border-gray-500 overflow-hidden">
+        {/* Fondo degradado con los tres colores del tema */}
+        <div className="absolute inset-0 rounded-full theme-toggle-gradient" />
         <motion.div
-          className="absolute top-0.5 left-0.5 w-7 h-7 cursor-grab active:cursor-grabbing z-10 flex items-center justify-center"
+          className="absolute top-0.5 left-0.5 w-7 h-7 cursor-grab active:cursor-grabbing z-10 flex items-center justify-center rounded-full"
           drag="x"
           dragConstraints={{
             left: 0,
