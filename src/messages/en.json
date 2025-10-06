@@ -8,11 +8,12 @@
   },
   "navigation": {
     "openMenu": "Open navigation menu",
-    "openMenuTitle": "Open menu"
+    "openMenuTitle": "Open menu",
+    "closeMenu": "Close navigation menu",
+    "closeMenuTitle": "Close menu"
   },
   "theme": {
     "light": "Day",
     "dark": "Night"
   }
 }
-
