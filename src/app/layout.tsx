@@ -18,13 +18,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${roboto.variable} font-roboto antialiased bg-black text-white`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }

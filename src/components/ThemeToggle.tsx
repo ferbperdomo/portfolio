@@ -3,50 +3,33 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-interface InteractiveSkyNavbarProps {
+interface ThemeToggleProps {
+  currentTheme: number;
   onThemeChange?: (themeState: number) => void;
   className?: string;
 }
 
-const InteractiveSkyNavbar: React.FC<InteractiveSkyNavbarProps> = ({
+const ThemeToggle: React.FC<ThemeToggleProps> = ({
+  currentTheme,
   onThemeChange,
   className = "",
 }) => {
-  const [themeState, setThemeState] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
 
   const dragX = useMotionValue(0);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const initialThemeState = mediaQuery.matches ? 2 : 0;
-
-    setThemeState(initialThemeState);
-
-    const initialPosition = initialThemeState === 0 ? 0 : 32;
-    dragX.set(initialPosition);
-
-    onThemeChange?.(initialThemeState);
-
+    // Sync toggle position with current theme
+    const position = currentTheme === 0 ? 0 : currentTheme === 1 ? 16 : 32;
+    dragX.set(position);
     setIsInitialized(true);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      const newThemeState = e.matches ? 2 : 0;
-      setThemeState(newThemeState);
-      dragX.set(newThemeState === 0 ? 0 : 32);
-      onThemeChange?.(newThemeState);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [dragX, onThemeChange]);
+  }, [currentTheme, dragX]);
 
   const sunOpacity = useTransform(dragX, [0, 16, 32], [1, 0, 0]);
   const starOpacity = useTransform(dragX, [0, 16, 32], [0, 1, 0]);
   const moonOpacity = useTransform(dragX, [0, 16, 32], [0, 0, 1]);
 
   const handleThemeChange = (newThemeState: number) => {
-    setThemeState(newThemeState);
     onThemeChange?.(newThemeState);
   };
 
@@ -62,7 +45,7 @@ const InteractiveSkyNavbar: React.FC<InteractiveSkyNavbarProps> = ({
       newThemeState = 2;
     }
 
-    if (newThemeState !== themeState) {
+    if (newThemeState !== currentTheme) {
       handleThemeChange(newThemeState);
     }
   };
@@ -150,4 +133,4 @@ const InteractiveSkyNavbar: React.FC<InteractiveSkyNavbarProps> = ({
   );
 };
 
-export default InteractiveSkyNavbar;
+export default ThemeToggle;

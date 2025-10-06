@@ -3,13 +3,20 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
-import InteractiveSkyNavbar from "../../components/InteractiveSkyNavbar";
+import { LanguageSelector } from "../../components/LanguageSelector";
+import ThemeToggle from "../../components/ThemeToggle";
 import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Navbar() {
   const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { themeState, isDarkMode, handleThemeChange } = useTheme();
+  const {
+    isDarkMode,
+    handleThemeChange,
+    getPrimaryColor,
+    getAccentColor,
+    themeState,
+  } = useTheme();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-gray-200/30 dark:border-gray-700/30 transition-all duration-1000">
@@ -23,71 +30,53 @@ export default function Navbar() {
             className="w-12 h-9"
           />
           <span
-            className={`font-semibold text-lg drop-shadow-lg ${
-              themeState === 0
-                ? "text-gray-900"
-                : themeState === 1
-                ? "text-[#7c3a43]"
-                : "text-white"
-            }`}
+            className={`font-semibold text-lg drop-shadow-lg ${getPrimaryColor()}`}
           >
             {t("title")}
           </span>
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2">
-          <InteractiveSkyNavbar
-            onThemeChange={handleThemeChange}
+          <ThemeToggle
+            currentTheme={themeState}
+            onThemeChange={(themeState: number) =>
+              handleThemeChange(themeState as 0 | 1 | 2)
+            }
             className="h-8"
           />
         </div>
 
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="relative w-8 h-8 flex items-center justify-center group md:hidden"
-          aria-label={t("navigation.openMenu")}
-          title={t("navigation.openMenuTitle")}
-        >
-          <div className="flex flex-col justify-center items-center space-y-1">
-            <div
-              className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
-                isMenuOpen
-                  ? "rotate-45 translate-y-0.5"
-                  : "rotate-0 translate-y-0"
-              } ${
-                themeState === 0
-                  ? "bg-gray-800"
-                  : themeState === 1
-                  ? "bg-[#7c3a43]"
-                  : "bg-white"
-              }`}
-            />
-            <div
-              className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
-                isMenuOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
-              } ${
-                themeState === 0
-                  ? "bg-gray-800"
-                  : themeState === 1
-                  ? "bg-[#7c3a43]"
-                  : "bg-white"
-              }`}
-            />
-            <div
-              className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
-                isMenuOpen
-                  ? "-rotate-45 -translate-y-0.5"
-                  : "rotate-0 translate-y-0"
-              } ${
-                themeState === 0
-                  ? "bg-gray-800"
-                  : themeState === 1
-                  ? "bg-[#7c3a43]"
-                  : "bg-white"
-              }`}
-            />
-          </div>
-        </button>
+        <div className="flex items-center gap-4">
+          <LanguageSelector />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="relative w-8 h-8 flex items-center justify-center group md:hidden"
+            aria-label={t("navigation.openMenu")}
+            title={t("navigation.openMenuTitle")}
+          >
+            <div className="flex flex-col justify-center items-center space-y-1">
+              <div
+                className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
+                  isMenuOpen
+                    ? "rotate-45 translate-y-0.5"
+                    : "rotate-0 translate-y-0"
+                } ${getAccentColor()}`}
+              />
+              <div
+                className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
+                  isMenuOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                } ${getAccentColor()}`}
+              />
+              <div
+                className={`w-4 h-0.5 transition-all duration-300 ease-in-out ${
+                  isMenuOpen
+                    ? "-rotate-45 -translate-y-0.5"
+                    : "rotate-0 translate-y-0"
+                } ${getAccentColor()}`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       <div
@@ -132,6 +121,9 @@ export default function Navbar() {
           >
             {t("menu.contact")}
           </a>
+          <div className="px-6 py-3 border-t border-gray-200/30 dark:border-gray-700/30">
+            <LanguageSelector />
+          </div>
         </div>
       </div>
     </nav>
