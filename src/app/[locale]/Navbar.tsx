@@ -4,27 +4,20 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 import { LanguageSelector } from "../../components/LanguageSelector";
-import ThemeToggle from "../../components/ThemeToggle";
 import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Navbar() {
   const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {
-    isDarkMode,
-    handleThemeChange,
-    getPrimaryColor,
-    getAccentColor,
-    themeState,
-  } = useTheme();
+  const { isDarkMode, themeState } = useTheme();
 
   return (
     <>
       <div
-        className={`fixed top-6 left-6 z-[9999] transition-opacity duration-300 ${
+        className={`fixed top-6 right-6 z-[9999] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
-        style={{ position: "fixed", top: "24px", left: "24px", zIndex: 9999 }}
+        style={{ position: "fixed", top: "24px", right: "24px", zIndex: 9999 }}
       >
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -34,9 +27,9 @@ export default function Navbar() {
           title={t("navigation.openMenuTitle")}
         >
           <div className="flex flex-col justify-center items-center space-y-1">
-            <div className="w-5 h-0.5 bg-[#7c3a43] transition-all duration-200" />
-            <div className="w-5 h-0.5 bg-[#7c3a43] transition-all duration-200" />
-            <div className="w-5 h-0.5 bg-[#7c3a43] transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
           </div>
         </button>
       </div>
@@ -50,24 +43,13 @@ export default function Navbar() {
           style={{
             backgroundColor:
               themeState === 0
-                ? "rgba(254, 247, 237, 0.8)"
+                ? "rgba(var(--color-wine-50), 0.8)"
                 : themeState === 1
-                ? "rgba(187, 247, 208, 0.8)"
-                : "rgba(42, 42, 42, 0.8)",
+                ? "rgba(var(--color-mint-200), 0.8)"
+                : "rgba(var(--color-primary-black-lighter), 0.8)",
           }}
         >
           <div className="flex flex-col h-screen justify-center items-center space-y-8 px-6 py-20 w-full">
-            {/* Theme Toggle */}
-            <div className="mb-8">
-              <ThemeToggle
-                currentTheme={themeState}
-                onThemeChange={(themeState: number) =>
-                  handleThemeChange(themeState as 0 | 1 | 2)
-                }
-                className="h-12"
-              />
-            </div>
-
             <a
               href="#"
               className={`text-2xl font-medium transition-colors ${
@@ -106,7 +88,7 @@ export default function Navbar() {
             </div>
 
             {/* Close button at the bottom */}
-            <div className="mt-16">
+            <div className="mt-6">
               <button
                 onClick={() => setIsMenuOpen(false)}
                 className="p-4 rounded-full transition-all duration-200 hover:bg-white/20"

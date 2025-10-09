@@ -5,7 +5,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
+import FloatingThemeSelector from "../../components/FloatingThemeSelector";
+import ProjectCard from "../../components/ProjectCard";
 import { useTheme } from "../../contexts/ThemeContext";
+import { getAllProjects } from "../../data/projects";
 import Navbar from "./Navbar";
 
 // Register GSAP plugins
@@ -15,10 +18,16 @@ if (typeof window !== "undefined") {
 
 export default function HomePage() {
   const t = useTranslations();
-  const { themeState, getBackgroundClass, getPrimaryColor, getSecondaryColor } =
-    useTheme();
+  const {
+    themeState,
+    handleThemeChange,
+    getBackgroundClass,
+    getPrimaryColor,
+    getSecondaryColor,
+  } = useTheme();
   const { scrollYProgress } = useScroll();
   const containerRef = useRef<HTMLDivElement>(null);
+  const projects = getAllProjects();
 
   // Smooth scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
@@ -41,7 +50,6 @@ export default function HomePage() {
 
   // Scale transforms
   const scale1 = useTransform(smoothProgress, [0, 0.5, 1], [0.8, 1, 1.2]);
-  const scale2 = useTransform(smoothProgress, [0, 0.5, 1], [1.2, 1, 0.8]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -169,6 +177,10 @@ export default function HomePage() {
   return (
     <div ref={containerRef} className={`min-h-screen ${getBackgroundClass()}`}>
       <Navbar />
+      <FloatingThemeSelector
+        currentTheme={themeState}
+        onThemeChange={(theme) => handleThemeChange(theme as 0 | 1 | 2)}
+      />
       {/* Hero Section */}
       <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video/Image */}
@@ -191,10 +203,10 @@ export default function HomePage() {
             x: x1,
             backgroundColor:
               themeState === 0
-                ? "#fef7ed"
+                ? "var(--color-wine-50)"
                 : themeState === 1
-                ? "#bbf7d0"
-                : "#2a2a2a",
+                ? "var(--color-mint-200)"
+                : "var(--color-primary-black-lighter)",
           }}
         />
         <motion.div
@@ -204,10 +216,10 @@ export default function HomePage() {
             x: x2,
             backgroundColor:
               themeState === 0
-                ? "#fef7ed"
+                ? "var(--color-wine-50)"
                 : themeState === 1
-                ? "#bbf7d0"
-                : "#2a2a2a",
+                ? "var(--color-mint-200)"
+                : "var(--color-primary-black-lighter)",
           }}
         />
 
@@ -240,10 +252,10 @@ export default function HomePage() {
         style={{
           backgroundColor:
             themeState === 0
-              ? "#f9d4af"
+              ? "var(--color-accent-cream)"
               : themeState === 1
-              ? "#86efac"
-              : "#404040",
+              ? "var(--color-mint-300)"
+              : "var(--color-neutral-700)",
         }}
       >
         <div className="max-w-6xl mx-auto">
@@ -333,10 +345,10 @@ export default function HomePage() {
                 style={{
                   color:
                     themeState === 0
-                      ? "#7c3a43"
+                      ? "var(--color-primary-wine)"
                       : themeState === 1
-                      ? "#58c29e"
-                      : "#86efac",
+                      ? "var(--color-primary-mint)"
+                      : "var(--color-mint-300)",
                 }}
               >
                 {t("profesional.code1")}
@@ -355,10 +367,10 @@ export default function HomePage() {
                 style={{
                   color:
                     themeState === 0
-                      ? "#5a2a2f"
+                      ? "var(--color-wine-700)"
                       : themeState === 1
-                      ? "#46a376"
-                      : "#4fb38a",
+                      ? "var(--color-mint-700)"
+                      : "var(--color-mint-600)",
                 }}
               >
                 {t("profesional.code2")}
@@ -377,10 +389,10 @@ export default function HomePage() {
                 style={{
                   color:
                     themeState === 0
-                      ? "#d88a8a"
+                      ? "var(--color-wine-400)"
                       : themeState === 1
-                      ? "#3d9362"
-                      : "#34834e",
+                      ? "var(--color-mint-800)"
+                      : "var(--color-mint-900)",
                 }}
               >
                 {t("profesional.code3")}
@@ -399,10 +411,10 @@ export default function HomePage() {
         style={{
           backgroundColor:
             themeState === 0
-              ? "#f3d2d2"
+              ? "var(--color-wine-200)"
               : themeState === 1
-              ? "#58c29e"
-              : "#171717",
+              ? "var(--color-primary-mint)"
+              : "var(--color-neutral-900)",
         }}
       >
         <div className="max-w-6xl mx-auto">
@@ -474,16 +486,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section
+        className="relative py-32 px-6 md:px-4"
+        style={{
+          backgroundColor:
+            themeState === 0
+              ? "var(--color-wine-100)"
+              : themeState === 1
+              ? "var(--color-mint-900)"
+              : "var(--color-primary-black-light)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            className={`text-4xl md:text-6xl font-bold mb-16 text-center ${getPrimaryColor()}`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            💼 Proyectos Destacados
+          </motion.h2>
+          <div className="space-y-16">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                themeState={themeState}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section
         className="relative py-32 px-8 md:px-4 pb-40"
         style={{
           backgroundColor:
             themeState === 0
-              ? "#fdf2f2"
+              ? "var(--color-wine-50)"
               : themeState === 1
-              ? "#f0fdf4"
-              : "#1a1a1a",
+              ? "var(--color-mint-50)"
+              : "var(--color-primary-black-light)",
         }}
       >
         <div className="max-w-4xl mx-auto text-center">
@@ -507,9 +553,9 @@ export default function HomePage() {
             <motion.button
               className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 ${
                 themeState === 0
-                  ? "bg-[#7c3a43] text-white hover:bg-[#6b3239]"
+                  ? "bg-wine-primary text-white hover:bg-wine-600"
                   : themeState === 1
-                  ? "bg-[#7c3a43] text-white hover:bg-[#6b3239]"
+                  ? "bg-wine-primary text-white hover:bg-wine-600"
                   : "bg-white text-black hover:bg-gray-200"
               }`}
               whileHover={{ scale: 1.05 }}
@@ -520,9 +566,9 @@ export default function HomePage() {
             <motion.button
               className={`px-8 py-4 rounded-full text-lg font-semibold border-2 transition-all duration-300 ${
                 themeState === 0
-                  ? "border-[#7c3a43] text-[#7c3a43] hover:bg-[#7c3a43] hover:text-white"
+                  ? "border-wine-primary text-wine-primary hover:bg-wine-primary hover:text-white"
                   : themeState === 1
-                  ? "border-[#7c3a43] text-[#7c3a43] hover:bg-[#7c3a43] hover:text-white"
+                  ? "border-wine-primary text-wine-primary hover:bg-wine-primary hover:text-white"
                   : "border-white text-white hover:bg-white hover:text-black"
               }`}
               whileHover={{ scale: 1.05 }}
