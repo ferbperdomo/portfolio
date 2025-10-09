@@ -17,22 +17,22 @@ export function LanguageSelector() {
   const getActiveButtonClass = () => {
     switch (themeState) {
       case 0: // Light theme
-        return "bg-[#7c3a43] text-white"; // Wine color
+        return "bg-wine-primary text-white"; // Wine color
       case 1: // Medium theme
-        return "bg-[#7c3a43] text-white"; // Wine color
+        return "bg-wine-primary text-white"; // Wine color
       case 2: // Dark theme
-        return "bg-[#7c3a43] text-white"; // Wine color
+        return "bg-wine-primary text-white"; // Wine color
       default:
-        return "bg-[#7c3a43] text-white";
+        return "bg-wine-primary text-white";
     }
   };
 
   const getInactiveButtonClass = () => {
     switch (themeState) {
       case 0: // Light theme
-        return "text-[#7c3a43] hover:bg-[#7c3a43]/10"; // Wine color with opacity
+        return "text-wine-primary hover:bg-wine-primary/10"; // Wine color with opacity
       case 1: // Medium theme
-        return "text-[#7c3a43] hover:bg-[#7c3a43]/10"; // Wine color with opacity
+        return "text-wine-primary hover:bg-wine-primary/10"; // Wine color with opacity
       case 2: // Dark theme
         return "text-white hover:bg-white/20";
       default:
