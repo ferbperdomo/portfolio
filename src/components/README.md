@@ -6,7 +6,7 @@ Un componente React para Next.js que crea una navbar con un toggle switch intera
 
 ### 🎨 **Colores de Marca**
 
-Utiliza exclusivamente los colores de la marca:
+Utiliza exclusivamente los colores de la marca para el componente:
 
 - **Wine**: `#7c3a43`
 - **Mint**: `#58c29e`
