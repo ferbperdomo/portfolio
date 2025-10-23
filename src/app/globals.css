@@ -315,3 +315,16 @@ body {
 .theme-toggle-gradient {
   background: linear-gradient(to right, #fef7ed, #bbf7d0, #2a2a2a);
 }
+
+/* Compatibilidad con Android para backdrop-filter - Solo menú móvil */
+@supports not (backdrop-filter: blur(8px)) {
+  .navbar-mobile {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .dark .navbar-mobile {
+    background-color: rgba(17, 24, 39, 0.95) !important;
+  }
+}

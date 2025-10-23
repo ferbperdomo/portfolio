@@ -148,8 +148,8 @@ export default function Navbar() {
       {/* Mobile Menu Overlay - Only on mobile */}
       {isMenuOpen && (
         <div
-          className={`md:hidden fixed inset-0 z-[100] backdrop-blur-lg transition-all duration-300 ease-in-out ${
-            isDarkMode ? "bg-gray-800/80" : "bg-white/80"
+          className={`navbar-mobile md:hidden fixed inset-0 z-[100] backdrop-blur-lg transition-all duration-300 ease-in-out supports-[backdrop-filter]:backdrop-blur-lg supports-[backdrop-filter]:bg-white/80 supports-[backdrop-filter]:dark:bg-gray-800/80 bg-white/95 dark:bg-gray-900/95 ${
+            isDarkMode ? "bg-gray-800/95" : "bg-white/95"
           }`}
           style={{
             backgroundColor:
