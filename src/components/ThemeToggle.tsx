@@ -64,6 +64,8 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
       height="28"
       className="object-contain pointer-events-none"
       style={{ opacity: sunOpacity }}
+      loading="eager"
+      fetchPriority="high"
     />
   );
 
