@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { getProjectBySlug } from "../../../../data/projects";
 
 export async function generateMetadata({
@@ -8,6 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, locale } = await params;
   const project = getProjectBySlug(slug);
+  const t = await getTranslations({ locale, namespace: "projects" });
 
   if (!project) {
     return {
@@ -16,8 +18,8 @@ export async function generateMetadata({
     };
   }
 
-  const projectName = project.name;
-  const projectDescription = project.shortDescription;
+  const projectName = t(`${project.slug}.name`);
+  const projectDescription = t(`${project.slug}.shortDescription`);
 
   return {
     title: `${projectName} - Cristian Perdomo`,

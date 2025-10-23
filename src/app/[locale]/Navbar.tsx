@@ -22,7 +22,6 @@ export default function Navbar() {
     pathname === "/en" ||
     pathname === "/es/" ||
     pathname === "/en/";
-  const isProjectPage = pathname.includes("/projects/");
 
   // Generate correct hrefs based on current page
   const getHomeHref = () => (isHomePage ? "#" : "/");
