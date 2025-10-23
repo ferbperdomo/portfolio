@@ -88,7 +88,7 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
           <motion.div
             className={`relative rounded-4xl overflow-hidden shadow-2xl ${
               project.slug === "irongame"
-                ? "w-80 h-40 md:w-[500px] md:h-56"
+                ? "w-70 h-34 md:w-[500px] md:h-56"
                 : "w-60 h-[500px]"
             }`}
             animate={{
