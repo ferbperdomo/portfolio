@@ -7,12 +7,21 @@ import FloatingThemeSelector from "../../../../components/FloatingThemeSelector"
 import TechStack from "../../../../components/TechStack";
 import { useTheme } from "../../../../contexts/ThemeContext";
 import { getProjectBySlug } from "../../../../data/projects";
+import type {
+  Challenge,
+  Feature,
+  Metric,
+} from "../../../../types/translations";
 import Navbar from "../../Navbar";
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations();
+
+  // Typed wrapper for accessing nested translation objects
+  const getRawTranslations = (key: string) =>
+    (t as unknown as { raw: (key: string) => unknown }).raw(key);
   const {
     themeState,
     handleThemeChange,
@@ -238,56 +247,56 @@ export default function ProjectDetailPage() {
             🚀 Desafíos Técnicos Superados
           </motion.h2>
           <div className="space-y-8">
-            {Object.entries(t.raw(`projects.${project.slug}.challenges`)).map(
-              ([key, challenge], index) => (
-                <motion.div
-                  key={key}
-                  className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <h3
-                    className={`text-2xl font-bold mb-4 ${getPrimaryColor()}`}
-                  >
-                    {challenge.title}
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <h4
-                        className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
-                      >
-                        ❌ Desafío:
-                      </h4>
-                      <p className={`${getSecondaryColor()}`}>
-                        {challenge.problem}
-                      </p>
-                    </div>
-                    <div>
-                      <h4
-                        className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
-                      >
-                        💡 Solución:
-                      </h4>
-                      <p className={`${getSecondaryColor()}`}>
-                        {challenge.solution}
-                      </p>
-                    </div>
-                    <div>
-                      <h4
-                        className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
-                      >
-                        ✅ Resultado:
-                      </h4>
-                      <p className={`${getSecondaryColor()}`}>
-                        {challenge.result}
-                      </p>
-                    </div>
+            {Object.entries(
+              getRawTranslations(
+                `projects.${project.slug}.challenges`
+              ) as Record<string, Challenge>
+            ).map(([key, challenge], index) => (
+              <motion.div
+                key={key}
+                className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <h3 className={`text-2xl font-bold mb-4 ${getPrimaryColor()}`}>
+                  {challenge.title}
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4
+                      className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
+                    >
+                      ❌ Desafío:
+                    </h4>
+                    <p className={`${getSecondaryColor()}`}>
+                      {challenge.problem}
+                    </p>
                   </div>
-                </motion.div>
-              )
-            )}
+                  <div>
+                    <h4
+                      className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
+                    >
+                      💡 Solución:
+                    </h4>
+                    <p className={`${getSecondaryColor()}`}>
+                      {challenge.solution}
+                    </p>
+                  </div>
+                  <div>
+                    <h4
+                      className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
+                    >
+                      ✅ Resultado:
+                    </h4>
+                    <p className={`${getSecondaryColor()}`}>
+                      {challenge.result}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -305,26 +314,29 @@ export default function ProjectDetailPage() {
             🔧 Funcionalidades Destacadas
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(t.raw(`projects.${project.slug}.features`)).map(
-              ([key, feature], index) => (
-                <motion.div
-                  key={key}
-                  className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <h3 className={`text-xl font-bold mb-3 ${getPrimaryColor()}`}>
-                    {feature.title}
-                  </h3>
-                  <p className={`${getSecondaryColor()}`}>
-                    {feature.description}
-                  </p>
-                </motion.div>
-              )
-            )}
+            {Object.entries(
+              getRawTranslations(`projects.${project.slug}.features`) as Record<
+                string,
+                Feature
+              >
+            ).map(([key, feature], index) => (
+              <motion.div
+                key={key}
+                className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <h3 className={`text-xl font-bold mb-3 ${getPrimaryColor()}`}>
+                  {feature.title}
+                </h3>
+                <p className={`${getSecondaryColor()}`}>
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -342,28 +354,29 @@ export default function ProjectDetailPage() {
             📊 Resultados del Proyecto
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {Object.entries(t.raw(`projects.${project.slug}.metrics`)).map(
-              ([key, metric], index) => (
-                <motion.div
-                  key={key}
-                  className={`rounded-3xl p-6 border-2 backdrop-blur-sm text-center ${getCardBackground()}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <div
-                    className={`text-3xl font-bold mb-2 ${getPrimaryColor()}`}
-                  >
-                    {metric.value}
-                  </div>
-                  <div className={`text-sm ${getSecondaryColor()}`}>
-                    {metric.label}
-                  </div>
-                </motion.div>
-              )
-            )}
+            {Object.entries(
+              getRawTranslations(`projects.${project.slug}.metrics`) as Record<
+                string,
+                Metric
+              >
+            ).map(([key, metric], index) => (
+              <motion.div
+                key={key}
+                className={`rounded-3xl p-6 border-2 backdrop-blur-sm text-center ${getCardBackground()}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <div className={`text-3xl font-bold mb-2 ${getPrimaryColor()}`}>
+                  {metric.value}
+                </div>
+                <div className={`text-sm ${getSecondaryColor()}`}>
+                  {metric.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

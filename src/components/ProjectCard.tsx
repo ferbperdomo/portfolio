@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import type { Project } from "../data/projects";
+import OptimizedVideo from "./OptimizedVideo";
 
 interface ProjectCardProps {
   project: Project;
@@ -103,13 +104,18 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
                   : "0 0 40px rgba(var(--color-primary-wine), 0.5), 0 0 80px rgba(var(--color-primary-wine), 0.25)",
             }}
           >
-            <video
+            <OptimizedVideo
               src={project.videoUrl}
+              className={`w-full h-full ${
+                project.slug === "irongame"
+                  ? "object-cover" // Cover for horizontal video (same as others)
+                  : "object-cover" // Cover for vertical videos
+              }`}
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              preload="metadata"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </motion.div>
@@ -138,7 +144,11 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
 
             {/* Key Features - Dynamic based on project */}
             <div className="mb-6 space-y-2">
-              {Object.entries(t.raw(`projects.${project.slug}.features`))
+              {Object.entries(
+                (t as unknown as { raw: (key: string) => unknown }).raw(
+                  `projects.${project.slug}.features`
+                ) as Record<string, { title: string; description: string }>
+              )
                 .slice(0, 3)
                 .map(([key, feature], index) => (
                   <p

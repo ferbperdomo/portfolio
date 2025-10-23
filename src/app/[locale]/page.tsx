@@ -3,7 +3,6 @@
 import { useScroll, useSpring, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import FloatingThemeSelector from "../../components/FloatingThemeSelector";
 import CTASection from "../../components/sections/CTASection";
@@ -19,14 +18,7 @@ if (typeof window !== "undefined") {
 }
 
 export default function HomePage() {
-  const t = useTranslations();
-  const {
-    themeState,
-    handleThemeChange,
-    getBackgroundClass,
-    getPrimaryColor,
-    getSecondaryColor,
-  } = useTheme();
+  const { themeState, handleThemeChange, getBackgroundClass } = useTheme();
   const { scrollYProgress } = useScroll();
   const containerRef = useRef<HTMLDivElement>(null);
 

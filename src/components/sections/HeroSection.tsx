@@ -1,32 +1,24 @@
 "use client";
 
-import { motion, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useTheme } from "../../contexts/ThemeContext";
 
+import type { MotionValue } from "framer-motion";
+
 interface HeroSectionProps {
-  y1: any;
-  y2: any;
-  y3: any;
-  x1: any;
-  x2: any;
-  opacity1: any;
-  opacity2: any;
-  opacity3: any;
-  scale1: any;
+  y1: MotionValue<number>;
+  y2: MotionValue<number>;
+  y3: MotionValue<number>;
+  x1: MotionValue<number>;
+  x2: MotionValue<number>;
+  opacity1: MotionValue<number>;
+  opacity2: MotionValue<number>;
+  opacity3: MotionValue<number>;
+  scale1: MotionValue<number>;
 }
 
-export default function HeroSection({
-  y1,
-  y2,
-  y3,
-  x1,
-  x2,
-  opacity1,
-  opacity2,
-  opacity3,
-  scale1,
-}: HeroSectionProps) {
+export default function HeroSection({ y1, y2, y3, x1, x2 }: HeroSectionProps) {
   const t = useTranslations();
   const { themeState, getPrimaryColor, getSecondaryColor } = useTheme();
 
