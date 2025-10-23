@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useTheme } from "../../contexts/ThemeContext";
-import ProjectCard from "../ProjectCard";
 import { getAllProjects } from "../../data/projects";
+import ProjectCard from "../ProjectCard";
 
 export default function ProjectsSection() {
   const t = useTranslations();
@@ -38,10 +38,7 @@ export default function ProjectsSection() {
         <div className="projects-grid space-y-16">
           {projects.map((project) => (
             <div key={project.id} className="project-card">
-              <ProjectCard
-                project={project}
-                themeState={themeState}
-              />
+              <ProjectCard project={project} themeState={themeState} />
             </div>
           ))}
         </div>

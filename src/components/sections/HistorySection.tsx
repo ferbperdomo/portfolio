@@ -37,13 +37,13 @@ export default function HistorySection({ y2, opacity1 }: HistorySectionProps) {
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="grid md:grid-cols-2 gap-16 items-center"
+          className="grid md:grid-cols-3 gap-16 items-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.div className="floating-element-1 relative" style={{ y: y2 }}>
+          <motion.div className="floating-element-1 relative md:col-span-1" style={{ y: y2 }}>
             <div
               className="w-64 h-64 rounded-full opacity-20"
               style={{
@@ -71,7 +71,7 @@ export default function HistorySection({ y2, opacity1 }: HistorySectionProps) {
           </motion.div>
 
           <motion.div
-            className="floating-element-2 space-y-6"
+            className="floating-element-2 space-y-6 md:col-span-2"
             style={{ opacity: opacity1 }}
           >
             <h2

@@ -27,7 +27,7 @@ export default function HeroSection({ y1, y2, y3, x1, x2 }: HeroSectionProps) {
       {/* Background Video/Image */}
       <motion.div className="absolute inset-0 z-0" style={{ y: y1 }}>
         <div
-          className="w-full h-full bg-cover bg-center opacity-20"
+          className="w-full h-full bg-cover bg-center opacity-8"
           style={{
             backgroundImage: "url('/test.png')",
             backgroundSize: "cover",
