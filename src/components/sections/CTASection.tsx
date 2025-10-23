@@ -42,42 +42,35 @@ export default function CTASection({
 
   return (
     <section
-      className="relative py-32 px-8 md:px-4 pb-40"
-      style={{
-        backgroundColor:
-          themeState === 0
-            ? "var(--color-wine-200)"
-            : themeState === 1
-            ? "var(--color-mint-800)"
-            : "var(--color-primary-black)",
-      }}
+      id="cta"
+      className={`relative py-32 px-8 md:px-4 pb-40 ${
+        themeState === 0
+          ? "bg-wine-200"
+          : themeState === 1
+          ? "bg-mint-800"
+          : "bg-primary-black"
+      }`}
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
-          className="floating-element-1 absolute top-20 left-20 w-32 h-32 rounded-full opacity-10"
-          style={{
-            y: y2,
-            x: x1,
-            backgroundColor:
-              themeState === 0
-                ? "var(--color-wine-300)"
-                : themeState === 1
-                ? "var(--color-mint-400)"
-                : "var(--color-primary-black-lighter)",
-          }}
+          className={`floating-element-1 absolute top-20 left-20 w-32 h-32 rounded-full opacity-10 ${
+            themeState === 0
+              ? "bg-wine-300"
+              : themeState === 1
+              ? "bg-mint-400"
+              : "bg-primary-black-lighter"
+          }`}
+          style={{ y: y2, x: x1 }}
         />
         <motion.div
-          className="floating-element-2 absolute bottom-20 right-20 w-24 h-24 rounded-full opacity-15"
-          style={{
-            y: y3,
-            x: x2,
-            backgroundColor:
-              themeState === 0
-                ? "var(--color-wine-400)"
-                : themeState === 1
-                ? "var(--color-mint-500)"
-                : "var(--color-primary-black-lighter)",
-          }}
+          className={`floating-element-2 absolute bottom-20 right-20 w-24 h-24 rounded-full opacity-15 ${
+            themeState === 0
+              ? "bg-wine-400"
+              : themeState === 1
+              ? "bg-mint-500"
+              : "bg-primary-black-lighter"
+          }`}
+          style={{ y: y3, x: x2 }}
         />
 
         <motion.div
@@ -107,7 +100,7 @@ export default function CTASection({
             viewport={{ once: true }}
           >
             <motion.a
-              href="mailto:cristian@example.com"
+              href="mailto:ferbperdomo@gmail.com"
               className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 ${getButtonStyle()}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -121,7 +114,7 @@ export default function CTASection({
                   ? "border-primary-wine text-primary-wine hover:bg-primary-wine hover:text-white"
                   : themeState === 1
                   ? "border-primary-mint text-primary-mint hover:bg-primary-mint hover:text-white"
-                  : "border-primary-black text-primary-black hover:bg-primary-black hover:text-white"
+                  : "border-white text-white hover:bg-white hover:text-black"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

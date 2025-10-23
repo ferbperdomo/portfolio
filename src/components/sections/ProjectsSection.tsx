@@ -13,6 +13,7 @@ export default function ProjectsSection() {
 
   return (
     <section
+      id="projects"
       className="relative py-32 px-6 md:px-4"
       style={{
         backgroundColor:

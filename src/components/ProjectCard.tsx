@@ -83,44 +83,31 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
     >
       <div className="grid md:grid-cols-2 gap-8 p-8">
         {/* Video Section - Responsive based on project */}
+
         <div className="flex items-center justify-center">
           <motion.div
             className={`relative rounded-4xl overflow-hidden shadow-2xl ${
               project.slug === "irongame"
-                ? "w-80 h-40 md:w-[500px] md:h-60" // Smaller on mobile, full size on desktop
-                : "w-60 h-[500px]" // Vertical proportions for other projects (240x500)
+                ? "w-80 h-40 md:w-[500px] md:h-56"
+                : "w-60 h-[500px]"
             }`}
             animate={{
               scale: isHovered ? 1.05 : 1,
               rotateY: isHovered ? 5 : 0,
             }}
             transition={{ duration: 0.3 }}
-            style={{
-              boxShadow:
-                themeState === 0
-                  ? "0 0 40px rgba(var(--color-primary-wine), 0.3), 0 0 80px rgba(var(--color-primary-wine), 0.15)"
-                  : themeState === 1
-                  ? "0 0 50px rgba(0, 0, 0, 0.6), 0 0 100px rgba(0, 0, 0, 0.4)"
-                  : "0 0 40px rgba(var(--color-primary-wine), 0.5), 0 0 80px rgba(var(--color-primary-wine), 0.25)",
-            }}
           >
             <OptimizedVideo
               src={project.videoUrl}
-              className={`w-full h-full ${
-                project.slug === "irongame"
-                  ? "object-cover" // Cover for horizontal video (same as others)
-                  : "object-cover" // Cover for vertical videos
-              }`}
+              className="w-full h-full object-cover"
               autoPlay
               loop
               muted
               playsInline
               preload="metadata"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </motion.div>
         </div>
-
         {/* Content Section */}
         <div className="flex flex-col justify-between">
           <div>
@@ -150,12 +137,11 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
                 ) as Record<string, { title: string; description: string }>
               )
                 .slice(0, 3)
-                .map(([key, feature], index) => (
+                .map(([key, feature]) => (
                   <p
                     key={key}
                     className={`text-sm font-semibold ${getPrimaryColor()}`}
                   >
-                    {["📸", "🎥", "💻", "🌍", "📱", "🔒", "✨"][index % 7]}{" "}
                     {feature.title}
                   </p>
                 ))}

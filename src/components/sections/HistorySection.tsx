@@ -24,6 +24,7 @@ export default function HistorySection({ y2, opacity1 }: HistorySectionProps) {
 
   return (
     <section
+      id="about"
       className="relative py-32 px-6 md:px-4 overflow-hidden"
       style={{
         backgroundColor:

@@ -1,8 +1,9 @@
 {
   "title": "Cristian Perdomo",
-  "subtitle": "Full Stack Developer • Digital Innovator",
+  "subtitle": "Full Stack Developer - Digital Innovator",
   "menu": {
     "home": "Home",
+    "about": "About me",
     "projects": "Projects",
     "contact": "Contact"
   },
@@ -22,9 +23,9 @@
   },
   "historia": {
     "title": "From Grammar to JavaScript",
-    "text1": "From English teacher to passionate Full-Stack Developer, my journey has been a transformation — from words to code.",
+    "text1": "From English teacher to passionate Full-Stack Developer, my journey has been a transformation - from words to code.",
     "text2": "I started my career teaching English in Colombia, but curiosity and creativity led me to the world of web development.",
-    "text3": "Learning to code wasn't just a career change — it became a new way to think, solve problems, and keep growing.",
+    "text3": "Learning to code wasn't just a career change - it became a new way to think, solve problems, and keep growing.",
     "text4": "Today, I combine my background in education with my technical skills to build projects that are functional, refined, and full of personality."
   },
   "profesional": {
@@ -44,7 +45,7 @@
   },
   "cta": {
     "title": "Shall we create something together?",
-    "subtitle": "Every project is a new adventure, every collaboration an opportunity to create something extraordinary.",
+    "subtitle": "I love projects with personality and purpose. If you have an idea, let's talk and see how to make it reality.",
     "projects": "View Projects",
     "contact": "Contact"
   },
@@ -65,7 +66,7 @@
         "payments": {
           "title": "Complex Payment System",
           "problem": "Integrate Stripe with automatic commission calculations, deposits, discounts and refunds.",
-          "solution": "I implemented webhooks to process payments in real time, calculate automatic commissions (40/60), handle 15% initial deposits and a complete refund system with tracking.",
+          "solution": "I implemented webhooks to process payments in real time, calculate automatic commissions, handle 15% initial deposits and a complete refund system with tracking.",
           "result": "Automatic payment system that processes transactions securely with precise financial calculations."
         },
         "i18n": {
@@ -86,7 +87,7 @@
         },
         "payments": {
           "title": "Automatic Payment Processing",
-          "description": "Complete Stripe integration that handles deposits (15% initial), automatic commission calculation (40/60), discount codes and refunds with complete tracking."
+          "description": "Complete Stripe integration that handles deposits (15% initial), automatic commission calculation, discount codes and refunds with complete tracking."
         },
         "bookings": {
           "title": "Smart Booking System",
@@ -306,7 +307,7 @@
         },
         "galleries": {
           "title": "Advanced Interactive Galleries",
-          "description": "Lazy loading with Intersection Observer, infinite scroll, fullscreen modals with keyboard navigation (←/→), and zoom effects. Support for images and videos with immersive playback."
+          "description": "Lazy loading with Intersection Observer, infinite scroll, fullscreen modals with keyboard navigation, and zoom effects. Support for images and videos with immersive playback."
         },
         "contact": {
           "title": "Smart Contact System",
@@ -344,7 +345,7 @@
         },
         "mobileFirst": {
           "label": "Mobile-First",
-          "value": "✓"
+          "value": "Yes"
         },
         "seoOptimization": {
           "label": "SEO Optimization",

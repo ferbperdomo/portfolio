@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface OptimizedVideoProps {
@@ -77,12 +78,7 @@ export default function OptimizedVideo({
   };
 
   return (
-    <motion.div
-      className="relative overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isLoaded ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <>
       {/* Placeholder mientras carga */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
@@ -92,14 +88,10 @@ export default function OptimizedVideo({
 
       {/* Poster image si está disponible */}
       {poster && !isLoaded && (
-        <img
-          src={poster}
-          alt="Video poster"
-          className="w-full h-full object-cover"
-        />
+        <Image src={poster} alt="Video poster" fill className="object-cover" />
       )}
 
-      <video
+      <motion.video
         ref={videoRef}
         src={isInView ? src : undefined}
         className={className}
@@ -111,11 +103,10 @@ export default function OptimizedVideo({
         poster={poster}
         onLoadedData={handleLoadedData}
         onCanPlay={handleCanPlay}
-        style={{
-          opacity: isLoaded ? 1 : 0,
-          transition: "opacity 0.3s ease-in-out",
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       />
-    </motion.div>
+    </>
   );
 }

@@ -1,14 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
 
 export function LanguageSelector() {
-  const t = useTranslations();
   const router = useRouter();
   const pathname = usePathname();
-  const { getPrimaryColor, getAccentColor, themeState } = useTheme();
+  const { themeState } = useTheme();
 
   // Extract locale from pathname
   const locale = pathname.split("/")[1] || "es";

@@ -173,6 +173,10 @@
   --container-desktop: clamp(48rem, 80vw, 80rem);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
 }

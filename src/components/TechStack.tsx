@@ -15,25 +15,53 @@ export default function TechStack({
   const getCategoryColor = (category: Technology["category"]) => {
     switch (category) {
       case "frontend":
-        return themeState === 2
-          ? "var(--color-info-light)"
-          : "var(--color-info)";
+        if (themeState === 0) {
+          return "var(--color-wine-600)"; // Wine theme: darker wine
+        } else if (themeState === 1) {
+          return "var(--color-wine-600)"; // Mint theme: use wine for contrast
+        } else {
+          return "var(--color-wine-400)"; // Dark theme: medium wine for balanced contrast
+        }
       case "backend":
-        return themeState === 2
-          ? "var(--color-success-light)"
-          : "var(--color-success)";
+        if (themeState === 0) {
+          return "var(--color-cream-600)"; // Wine theme: cream
+        } else if (themeState === 1) {
+          return "var(--color-cream-500)"; // Mint theme: cream for contrast
+        } else {
+          return "var(--color-wine-200)"; // Dark theme: medium cream for balanced contrast
+        }
       case "database":
-        return "var(--color-warning)";
+        if (themeState === 0) {
+          return "var(--color-wine-700)"; // Wine theme: darker wine
+        } else if (themeState === 1) {
+          return "var(--color-wine-700)"; // Mint theme: wine for contrast
+        } else {
+          return "var(--color-wine-400)"; // Dark theme: medium wine for balanced contrast
+        }
       case "devops":
-        return "var(--color-error-light)";
+        if (themeState === 0) {
+          return "var(--color-cream-700)"; // Wine theme: darker cream
+        } else if (themeState === 1) {
+          return "var(--color-cream-600)"; // Mint theme: cream for contrast
+        } else {
+          return "var(--color-wine-500)"; // Dark theme: medium cream for balanced contrast
+        }
       case "tools":
-        return themeState === 2
-          ? "var(--color-mint-300)"
-          : "var(--color-primary-mint)";
+        if (themeState === 0) {
+          return "var(--color-wine-500)"; // Wine theme: medium wine
+        } else if (themeState === 1) {
+          return "var(--color-wine-500)"; // Mint theme: wine for contrast
+        } else {
+          return "var(--color-wine-300)"; // Dark theme: lighter wine for balanced contrast
+        }
       default:
-        return themeState === 2
-          ? "var(--color-neutral-400)"
-          : "var(--color-neutral-500)";
+        if (themeState === 0) {
+          return "var(--color-wine-400)"; // Wine theme: lighter wine
+        } else if (themeState === 1) {
+          return "var(--color-wine-400)"; // Mint theme: wine for contrast
+        } else {
+          return "var(--color-wine-400)"; // Dark theme: medium cream for balanced contrast
+        }
     }
   };
 

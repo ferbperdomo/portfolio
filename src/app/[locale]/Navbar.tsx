@@ -2,16 +2,33 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LanguageSelector } from "../../components/LanguageSelector";
 import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Navbar() {
   const t = useTranslations();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { isDarkMode, themeState } = useTheme();
+
+  // Check if we're on the home page or a project page
+  const isHomePage =
+    pathname === "/es" ||
+    pathname === "/en" ||
+    pathname === "/es/" ||
+    pathname === "/en/";
+  const isProjectPage = pathname.includes("/projects/");
+
+  // Generate correct hrefs based on current page
+  const getHomeHref = () => (isHomePage ? "#" : "/");
+  const getAboutHref = () => (isHomePage ? "#about" : "/#about");
+  const getProjectsHref = () => (isHomePage ? "#projects" : "/#projects");
+  const getContactHref = () => (isHomePage ? "#cta" : "/#cta");
 
   // Close mobile menu when switching to desktop
   useEffect(() => {
@@ -63,8 +80,8 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col space-y-4 items-end backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
-          <a
-            href="#"
+          <Link
+            href={getHomeHref()}
             className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
               isDarkMode
                 ? "text-white hover:text-gray-300"
@@ -72,9 +89,19 @@ export default function Navbar() {
             }`}
           >
             {t("menu.home")}
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href={getAboutHref()}
+            className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
+              isDarkMode
+                ? "text-white hover:text-gray-300"
+                : "text-gray-900 hover:text-gray-600"
+            }`}
+          >
+            {t("menu.about")}
+          </Link>
+          <Link
+            href={getProjectsHref()}
             className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
               isDarkMode
                 ? "text-white hover:text-gray-300"
@@ -82,9 +109,9 @@ export default function Navbar() {
             }`}
           >
             {t("menu.projects")}
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href={getContactHref()}
             className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
               isDarkMode
                 ? "text-white hover:text-gray-300"
@@ -92,7 +119,7 @@ export default function Navbar() {
             }`}
           >
             {t("menu.contact")}
-          </a>
+          </Link>
           <div className="mt-4 flex justify-end">
             <LanguageSelector />
           </div>
@@ -104,12 +131,10 @@ export default function Navbar() {
         className={`md:hidden fixed top-6 right-6 z-[9999] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
-        style={{ position: "fixed", top: "24px", right: "24px", zIndex: 9999 }}
       >
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="relative w-10 h-10 flex items-center justify-center group transition-all duration-200"
-          style={{ transform: "none" }}
           aria-label={t("navigation.openMenu")}
           title={t("navigation.openMenuTitle")}
         >
@@ -137,8 +162,8 @@ export default function Navbar() {
           }}
         >
           <div className="flex flex-col h-screen justify-center items-center space-y-8 px-6 py-20 w-full">
-            <a
-              href="#"
+            <Link
+              href={getHomeHref()}
               className={`text-2xl font-medium transition-colors ${
                 isDarkMode
                   ? "text-white hover:text-gray-300"
@@ -147,9 +172,20 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("menu.home")}
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href={getAboutHref()}
+              className={`text-2xl font-medium transition-colors ${
+                isDarkMode
+                  ? "text-white hover:text-gray-300"
+                  : "text-gray-900 hover:text-gray-600"
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t("menu.about")}
+            </Link>
+            <Link
+              href={getProjectsHref()}
               className={`text-2xl font-medium transition-colors ${
                 isDarkMode
                   ? "text-white hover:text-gray-300"
@@ -158,9 +194,9 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("menu.projects")}
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href={getContactHref()}
               className={`text-2xl font-medium transition-colors ${
                 isDarkMode
                   ? "text-white hover:text-gray-300"
@@ -169,7 +205,7 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("menu.contact")}
-            </a>
+            </Link>
             <div className="mt-8">
               <LanguageSelector />
             </div>
