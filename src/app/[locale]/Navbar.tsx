@@ -2,19 +2,106 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LanguageSelector } from "../../components/LanguageSelector";
 import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Navbar() {
   const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { isDarkMode, themeState } = useTheme();
+
+  // Close mobile menu when switching to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Handle navbar visibility on scroll (desktop only)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const heroHeight = window.innerHeight; // Hero section height
+
+      // Only hide navbar after hero section
+      if (currentScrollY > heroHeight) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down - hide navbar
+          setIsNavbarVisible(false);
+        } else {
+          // Scrolling up - show navbar
+          setIsNavbarVisible(true);
+        }
+      } else {
+        // In hero section - always show navbar
+        setIsNavbarVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
+      {/* Desktop Menu - Vertical List */}
       <div
-        className={`fixed top-6 right-6 z-[9999] transition-opacity duration-300 ${
+        className={`hidden md:block fixed top-6 right-6 z-50 transition-all duration-300 ease-in-out ${
+          isNavbarVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col space-y-4 items-end backdrop-blur-sm bg-white/10 rounded-2xl p-6 border border-white/20">
+          <a
+            href="#"
+            className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
+              isDarkMode
+                ? "text-white hover:text-gray-300"
+                : "text-gray-900 hover:text-gray-600"
+            }`}
+          >
+            {t("menu.home")}
+          </a>
+          <a
+            href="#"
+            className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
+              isDarkMode
+                ? "text-white hover:text-gray-300"
+                : "text-gray-900 hover:text-gray-600"
+            }`}
+          >
+            {t("menu.projects")}
+          </a>
+          <a
+            href="#"
+            className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
+              isDarkMode
+                ? "text-white hover:text-gray-300"
+                : "text-gray-900 hover:text-gray-600"
+            }`}
+          >
+            {t("menu.contact")}
+          </a>
+          <div className="mt-4 flex justify-end">
+            <LanguageSelector />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Burger Menu Button */}
+      <div
+        className={`md:hidden fixed top-6 right-6 z-[9999] transition-opacity duration-300 ${
           isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         style={{ position: "fixed", top: "24px", right: "24px", zIndex: 9999 }}
@@ -27,17 +114,17 @@ export default function Navbar() {
           title={t("navigation.openMenuTitle")}
         >
           <div className="flex flex-col justify-center items-center space-y-1">
-            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
-            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
-            <div className="w-5 h-0.5 bg-wine-primary transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-primary-wine transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-primary-wine transition-all duration-200" />
+            <div className="w-5 h-0.5 bg-primary-wine transition-all duration-200" />
           </div>
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Only on mobile */}
       {isMenuOpen && (
         <div
-          className={`fixed inset-0 z-[100] backdrop-blur-lg transition-all duration-300 ease-in-out ${
+          className={`md:hidden fixed inset-0 z-[100] backdrop-blur-lg transition-all duration-300 ease-in-out ${
             isDarkMode ? "bg-gray-800/80" : "bg-white/80"
           }`}
           style={{

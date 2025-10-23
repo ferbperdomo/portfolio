@@ -18,12 +18,14 @@
   },
   "hero": {
     "name": "Cristian Perdomo",
-    "subtitle": "Donde la tecnología se encuentra con el arte, donde cada línea de código es un verso, cada proyecto una historia."
+    "subtitle": "Doy vida a tus ideas con código que se ve tan bien como funciona."
   },
   "historia": {
-    "title": "Mi Historia",
-    "text1": "Cada proyecto es un hilo en el tapiz de mi carrera. Desde los primeros experimentos con código hasta las creaciones más complejas, cada línea cuenta una historia de crecimiento y descubrimiento.",
-    "text2": "La programación no es solo mi profesión, es mi forma de expresar creatividad, de resolver problemas con elegancia, de construir puentes entre la imaginación y la realidad."
+    "title": "De la gramática al JavaScript",
+    "text1": "De profesor de inglés a desarrollador full-stack, mi recorrido ha sido una transformación: de las palabras al código.",
+    "text2": "Empecé mi carrera enseñando en Colombia, pero la curiosidad y la creatividad me llevaron al mundo del desarrollo web.",
+    "text3": "Aprender a programar no fue solo un cambio profesional, sino una nueva forma de pensar, resolver problemas y seguir creciendo.",
+    "text4": "Hoy combino mi experiencia docente con mis habilidades técnicas para crear proyectos funcionales, cuidados y con personalidad."
   },
   "profesional": {
     "title": "Mi Arte Digital",
@@ -45,5 +47,310 @@
     "subtitle": "Cada proyecto es una nueva aventura, cada colaboración una oportunidad de crear algo extraordinario.",
     "projects": "Ver Proyectos",
     "contact": "Contactar"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "beyourmotorbike": {
+      "name": "BeYourMotorbike",
+      "tagline": "Plataforma de Alquiler de Motos en Tenerife",
+      "shortDescription": "Plataforma web completa que conecta propietarios de motos con turistas para alquileres seguros y rentables. Los usuarios pueden alquilar motos premium con reservas online, mientras que los propietarios ganan dinero con sus vehículos sin complicaciones.",
+      "fullDescription": "Desarrollé una plataforma completa de alquiler de motocicletas desde cero utilizando Next.js 15 con TypeScript, PostgreSQL y Prisma ORM. El proyecto incluye un sistema de autenticación robusto con NextAuth.js, procesamiento de pagos con Stripe (incluyendo depósitos, comisiones automáticas y reembolsos), y un panel administrativo completo para gestión de usuarios, reservas y analytics.",
+      "challenges": {
+        "database": {
+          "title": "Diseño de Base de Datos desde Cero",
+          "problem": "Primera vez diseñando un esquema relacional completo para un marketplace con múltiples entidades interconectadas.",
+          "solution": "Creé 8+ tablas interconectadas con relaciones complejas entre usuarios, motos, reservas y pagos. Implementé roles granulares (CLIENT, PROVIDER, ADMIN) y un sistema de documentos escalable.",
+          "result": "Sistema escalable que maneja eficientemente todas las operaciones del marketplace con integridad referencial completa."
+        },
+        "payments": {
+          "title": "Sistema de Pagos Complejo",
+          "problem": "Integrar Stripe con cálculos automáticos de comisiones, depósitos, descuentos y reembolsos.",
+          "solution": "Implementé webhooks para procesar pagos en tiempo real, calcular comisiones automáticas (40/60), manejar depósitos del 15% inicial y un sistema de reembolsos con tracking completo.",
+          "result": "Sistema automático de pagos que procesa transacciones de forma segura con cálculos financieros precisos."
+        },
+        "i18n": {
+          "title": "Internacionalización Empresarial",
+          "problem": "Crear una plataforma multiidioma con SEO optimizado para tres mercados diferentes.",
+          "solution": "Implementé next-intl con soporte completo para ES/EN/DE, configuré hreflang para SEO, y creé middleware inteligente para redirección automática según el idioma del navegador.",
+          "result": "Plataforma completamente internacionalizada con SEO optimizado para tres idiomas y UX fluida."
+        }
+      },
+      "features": {
+        "documents": {
+          "title": "Sistema de Documentos Avanzado",
+          "description": "Permite escanear documentos con la cámara del móvil, recortarlos con CropperJS y subirlos organizadamente a Cloudinary. Incluye validación de ITV, seguros y licencias con tokens de acceso para visualización segura."
+        },
+        "admin": {
+          "title": "Panel Administrativo Completo",
+          "description": "Panel con gestión de usuarios, motos, reservas y analytics en tiempo real. Incluye sistema de marketing con exportación de datos y gestión de reembolsos con estados."
+        },
+        "payments": {
+          "title": "Procesamiento de Pagos Automático",
+          "description": "Integración completa con Stripe que maneja depósitos (15% inicial), cálculo automático de comisiones (40/60), códigos de descuento y reembolsos con tracking completo."
+        },
+        "bookings": {
+          "title": "Sistema de Reservas Inteligente",
+          "description": "Calendarios dinámicos con disponibilidad en tiempo real, cálculo automático de precios según duración, aplicación de descuentos y gestión de extras (cascos, chaquetas, etc.)."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Tiempo de Desarrollo",
+          "value": "2 meses"
+        },
+        "databaseTables": {
+          "label": "Tablas de Base de Datos",
+          "value": "8+"
+        },
+        "languages": {
+          "label": "Idiomas Implementados",
+          "value": "3"
+        },
+        "apiEndpoints": {
+          "label": "Endpoints de API",
+          "value": "15+"
+        },
+        "typeSafety": {
+          "label": "Type Safety",
+          "value": "100%"
+        },
+        "adminSections": {
+          "label": "Secciones del Panel Admin",
+          "value": "6"
+        }
+      }
+    },
+    "remitt": {
+      "name": "Remitt",
+      "tagline": "Plataforma de Comparación de Remesas Internacionales",
+      "shortDescription": "Aplicación web que ayuda a las personas a comparar comisiones de remesas y elegir la mejor opción para enviar dinero internacionalmente. Integra múltiples proveedores financieros y ofrece comparaciones en tiempo real.",
+      "fullDescription": "Desarrollé una plataforma completa de comparación de remesas desde cero utilizando React 17 con JavaScript, Express.js y MongoDB. La aplicación integra la API de TransferWise para obtener datos en tiempo real de más de 20 proveedores financieros, incluyendo bancos tradicionales y fintechs como Wise, Western Union, Remitly y WorldRemit. Implementé un sistema de autenticación con registro de usuarios, notificaciones por email con Nodemailer, y una interfaz responsive con modo oscuro/claro usando Tailwind CSS.",
+      "challenges": {
+        "apiIntegration": {
+          "title": "Integración de API Externa Compleja",
+          "problem": "Integrar la API de TransferWise para obtener datos en tiempo real de múltiples proveedores de remesas con diferentes formatos de respuesta y manejo de errores.",
+          "solution": "Creé un servicio de API personalizado con Axios que maneja las consultas a la API de TransferWise, implementé manejo de errores robusto y validación de datos antes de mostrar resultados al usuario.",
+          "result": "Sistema confiable que procesa consultas de remesas en tiempo real con más de 20 proveedores financieros y maneja errores de API de forma elegante."
+        },
+        "userExperience": {
+          "title": "Optimización de Experiencia de Usuario",
+          "problem": "Crear una interfaz intuitiva que permita a usuarios no técnicos comparar fácilmente opciones complejas de remesas con diferentes comisiones y tasas de cambio.",
+          "solution": "Implementé un formulario simplificado con selectores de países con banderas, validación en tiempo real, estados de carga con spinner personalizado, y resultados visuales claros mostrando comisiones y cantidades recibidas.",
+          "result": "Interfaz que reduce la complejidad de comparar remesas a unos pocos clicks, con feedback visual claro y navegación intuitiva."
+        },
+        "dataManagement": {
+          "title": "Gestión de Datos de Países y Proveedores",
+          "problem": "Manejar una base de datos extensa de países con sus monedas, banderas en base64, y múltiples proveedores financieros con diferentes URLs y configuraciones.",
+          "solution": "Creé archivos JSON estructurados para países y proveedores, implementé un sistema de mapeo de datos que conecta países con monedas y proveedores con sus URLs correspondientes.",
+          "result": "Sistema escalable que maneja más de 100 países y 20+ proveedores financieros con datos actualizados y fácil mantenimiento."
+        }
+      },
+      "features": {
+        "comparisonEngine": {
+          "title": "Motor de Comparación en Tiempo Real",
+          "description": "Sistema que consulta múltiples proveedores financieros simultáneamente, calcula comisiones y tasas de cambio actuales, y presenta los resultados ordenados por mejor valor para el usuario."
+        },
+        "countrySelector": {
+          "title": "Selector de Países Avanzado",
+          "description": "Componente con más de 100 países, banderas en base64, nombres en español e inglés, y búsqueda inteligente que facilita la selección del país origen y destino."
+        },
+        "themeSystem": {
+          "title": "Sistema de Temas Dinámico",
+          "description": "Implementación de modo oscuro/claro con Context API de React, persistencia de preferencias del usuario, y transiciones suaves entre temas con iconos adaptativos."
+        },
+        "userRegistration": {
+          "title": "Sistema de Registro y Notificaciones",
+          "description": "Registro de usuarios con validación de email, sistema de notificaciones automáticas por correo electrónico usando Nodemailer y OAuth2, y gestión de sesiones."
+        },
+        "responsiveDesign": {
+          "title": "Diseño Responsive Completo",
+          "description": "Interfaz adaptativa que funciona perfectamente en móviles, tablets y desktop, con navegación hamburguesa, cards responsivas y optimización para diferentes tamaños de pantalla."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Tiempo de Desarrollo",
+          "value": "3 semanas"
+        },
+        "providersIntegrated": {
+          "label": "Proveedores Financieros Integrados",
+          "value": "20+"
+        },
+        "countriesSupported": {
+          "label": "Países Soportados",
+          "value": "100+"
+        },
+        "technologiesUsed": {
+          "label": "Tecnologías Principales",
+          "value": "React, Express.js, MongoDB, Tailwind CSS"
+        }
+      }
+    },
+    "irongame": {
+      "name": "Irongame",
+      "tagline": "Juego de Supervivencia con Canvas HTML5",
+      "shortDescription": "Juego web de supervivencia desarrollado con HTML5 Canvas y JavaScript vanilla donde el jugador debe sobrevivir 30 segundos contra enemigos Python y Octopus mientras recolecta bonificaciones de vida.",
+      "fullDescription": "Desarrollé un juego completo de supervivencia desde cero utilizando HTML5 Canvas, JavaScript vanilla y CSS3. El juego implementa un sistema de colisiones complejo, animaciones con sprites, sistema de vida dinámico, enemigos con movimiento direccional, y mecánicas de disparo direccional con cálculo trigonométrico.",
+      "challenges": {
+        "collisionSystem": {
+          "title": "Sistema de Colisiones Complejo",
+          "problem": "Implementar detección de colisiones entre múltiples elementos (jugador, enemigos, balas, bonificaciones) con diferentes tamaños y velocidades en tiempo real.",
+          "solution": "Creé funciones específicas para cada tipo de colisión usando coordenadas rectangulares y cálculos matemáticos precisos para detectar intersecciones entre elementos del juego.",
+          "result": "Sistema robusto que maneja colisiones en tiempo real entre 6+ tipos de elementos diferentes sin errores de detección."
+        },
+        "enemyMovement": {
+          "title": "Sistema de Movimiento de Enemigos",
+          "problem": "Crear enemigos que se muevan hacia el jugador de forma fluida y natural usando cálculos matemáticos.",
+          "solution": "Implementé algoritmos de normalización vectorial y cálculo trigonométrico para que los enemigos se muevan directamente hacia el jugador con velocidades diferenciadas.",
+          "result": "Dos tipos de enemigos con velocidades distintas (PythonEnemy: 1, OctoEnemy: 2.5) que persiguen al jugador de forma fluida usando vectores normalizados."
+        },
+        "spriteAnimation": {
+          "title": "Sistema de Animación con Sprites",
+          "problem": "Crear animaciones fluidas para todos los elementos del juego usando sprites con diferentes números de frames y sincronización.",
+          "solution": "Desarrollé un sistema de animación basado en frames que sincroniza todas las animaciones con el loop principal del juego a 60 FPS usando índices de frames.",
+          "result": "Animaciones sincronizadas para jugador (4 frames), enemigos (5-7 frames), balas (3 frames) y bonificaciones (4 frames) que funcionan perfectamente."
+        },
+        "gameLoop": {
+          "title": "Optimización del Game Loop",
+          "problem": "Crear un loop de juego eficiente que maneje renderizado, lógica, colisiones y audio sin afectar el rendimiento.",
+          "solution": "Implementé un game loop con setInterval optimizado que ejecuta todas las operaciones del juego cada 20ms (50 FPS) con gestión eficiente de memoria.",
+          "result": "Juego fluido que mantiene 60 FPS de animación con gestión eficiente de recursos y sin memory leaks."
+        }
+      },
+      "features": {
+        "directionalShooting": {
+          "title": "Sistema de Disparo Direccional",
+          "description": "Permite al jugador disparar en cualquier dirección haciendo clic en el canvas, calculando automáticamente el ángulo y trayectoria de la bala usando trigonometría (atan2, cos, sin)."
+        },
+        "dynamicLifeSystem": {
+          "title": "Sistema de Vida Dinámico",
+          "description": "Barra de vida visual que cambia en tiempo real según el daño recibido, con imágenes predefinidas que representan diferentes niveles de salud del jugador (0%, 20%, 40%, 60%, 80%, 100%)."
+        },
+        "audioIntegration": {
+          "title": "Sistema de Audio Completo",
+          "description": "Integración de efectos de sonido para disparos y música de fondo con control de volumen (0.2) y loop automático para mejorar la experiencia del jugador."
+        },
+        "countdownTimer": {
+          "title": "Sistema de Temporizador",
+          "description": "Cuenta regresiva de 30 segundos que controla la duración del juego y activa automáticamente la pantalla de victoria cuando se completa el tiempo, con formato visual de 2 dígitos."
+        },
+        "gameStates": {
+          "title": "Gestión de Estados del Juego",
+          "description": "Sistema completo de estados que maneja el inicio, juego activo, game over y victoria con pantallas específicas, imágenes de resultado y funcionalidad de reinicio."
+        },
+        "spriteManagement": {
+          "title": "Gestión de Sprites",
+          "description": "Sistema completo de carga y renderizado de sprites con diferentes números de frames, animación sincronizada y gestión eficiente de memoria para todos los elementos visuales."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Tiempo de Desarrollo",
+          "value": "1 semana"
+        },
+        "javascriptFiles": {
+          "label": "Archivos JavaScript",
+          "value": "10"
+        },
+        "gameElements": {
+          "label": "Elementos del Juego",
+          "value": "6 tipos"
+        },
+        "collisionTypes": {
+          "label": "Tipos de Colisiones",
+          "value": "4"
+        },
+        "fps": {
+          "label": "Frames por Segundo",
+          "value": "60 FPS"
+        },
+        "gameDuration": {
+          "label": "Duración del Juego",
+          "value": "30 segundos"
+        },
+        "spriteFrames": {
+          "label": "Frames de Animación",
+          "value": "23 total"
+        }
+      }
+    },
+    "byte-studio": {
+      "name": "BYTE STUDIO",
+      "tagline": "Estudio Creativo de Contenido Visual y Desarrollo Web",
+      "shortDescription": "Plataforma digital que muestra nuestro trabajo en fotografía, videografía y desarrollo web. Los clientes pueden explorar nuestro portafolio visual, ver proyectos reales y contactarnos directamente para crear contenido que haga brillar su marca.",
+      "fullDescription": "Desarrollé una plataforma de portfolio completa desde cero utilizando Next.js 15 (App Router) con TypeScript, implementando un sistema de gestión de medios basado en file system sin necesidad de base de datos. El proyecto incluye galerías interactivas con lazy loading, un sistema de internacionalización completo con next-intl (ES/EN), y un diseño full responsive con animaciones avanzadas usando Framer Motion.",
+      "challenges": {
+        "media": {
+          "title": "Sistema de Gestión de Medios sin Base de Datos",
+          "problem": "Crear un sistema que gestione más de 48 archivos multimedia (24 imágenes + 24 videos) sin base de datos, pero con metadata dinámica y búsqueda eficiente.",
+          "solution": "Implementé un sistema basado en File System API que escanea automáticamente directorios (/public/media/), genera metadata dinámica, y utiliza Server Components para el rendering inicial con cero overhead de database queries.",
+          "result": "Sistema de medios ultrarrápido que carga metadata en build-time, con lazy loading progresivo y optimización automática de imágenes con Sharp."
+        },
+        "galleries": {
+          "title": "Galerías Interactivas con Rendimiento Óptimo",
+          "problem": "Crear galerías con 24+ elementos multimedia cada una, manteniendo rendimiento óptimo y experiencia de usuario fluida.",
+          "solution": "Implementé lazy loading con Intersection Observer, infinite scroll, modales fullscreen con navegación por teclado, y optimización de imágenes con Next/Image y Sharp.",
+          "result": "Galerías que cargan instantáneamente con scroll infinito, consumo mínimo de memoria y Core Web Vitals optimizados."
+        },
+        "ui": {
+          "title": "Componentes UI Interactivos en Tiempo Real",
+          "problem": "Mostrar componentes UI avanzados con efectos modernos (glassmorphism, morphing, 3D) que funcionen perfectamente en todos los dispositivos.",
+          "solution": "Creé un sistema de componentes modulares con Framer Motion, efectos de parallax, animaciones en cascade (stagger), y transiciones suaves optimizadas para mobile-first.",
+          "result": "Experiencia visual impresionante con animaciones fluidas y efectos premium que funcionan perfectamente en cualquier dispositivo."
+        }
+      },
+      "features": {
+        "media": {
+          "title": "Sistema de Medios Local Automatizado",
+          "description": "File System API escanea automáticamente directorios, genera thumbnails con Sharp, y crea metadata dinámica sin base de datos. Optimización automática de imágenes y videos con caching estratégico."
+        },
+        "galleries": {
+          "title": "Galerías Interactivas Avanzadas",
+          "description": "Lazy loading con Intersection Observer, infinite scroll, modales fullscreen con navegación por teclado (←/→), y efectos de zoom. Soporte para imágenes y videos con reproducción inmersiva."
+        },
+        "contact": {
+          "title": "Sistema de Contacto Inteligente",
+          "description": "Integración con Resend para envío de emails con templates HTML personalizados, validación en tiempo real, rate limiting en API Routes, y confirmación automática."
+        },
+        "showcase": {
+          "title": "Componentes UI Showcase",
+          "description": "WebGallery con componentes interactivos en tiempo real: botones con morphing, cards con glassmorphism, inputs con gradientes animados, iconos con transformaciones 3D, y efectos de parallax."
+        },
+        "effects": {
+          "title": "Efectos Visuales Premium",
+          "description": "InteractiveFirmament con partículas animadas, hero section con glassmorphism y sweeping light, transiciones de página suaves, y animaciones en cascade con Framer Motion."
+        },
+        "optimization": {
+          "title": "Optimización de Rendimiento Total",
+          "description": "Server Components por defecto, lazy loading estratégico, caching inteligente, scripts de optimización automatizados, y SEO completo con metadata dinámica, robots.ts, sitemap.ts y hreflang."
+        }
+      },
+      "metrics": {
+        "multimediaFiles": {
+          "label": "Archivos Multimedia",
+          "value": "48+"
+        },
+        "languages": {
+          "label": "Idiomas Implementados",
+          "value": "2"
+        },
+        "uiComponents": {
+          "label": "Componentes UI",
+          "value": "20+"
+        },
+        "noDatabase": {
+          "label": "Sin Base de Datos",
+          "value": "100%"
+        },
+        "mobileFirst": {
+          "label": "Mobile-First",
+          "value": "✓"
+        },
+        "seoOptimization": {
+          "label": "Optimización SEO",
+          "value": "Total"
+        }
+      }
+    }
   }
 }

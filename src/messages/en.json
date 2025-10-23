@@ -18,12 +18,14 @@
   },
   "hero": {
     "name": "Cristian Perdomo",
-    "subtitle": "Where technology meets art, where every line of code is a verse, every project a story."
+    "subtitle": "Let's bring your ideas to life through code that looks as good as it works."
   },
   "historia": {
-    "title": "My Story",
-    "text1": "Every project is a thread in the tapestry of my career. From the first experiments with code to the most complex creations, every line tells a story of growth and discovery.",
-    "text2": "Programming is not just my profession, it's my way of expressing creativity, solving problems with elegance, building bridges between imagination and reality."
+    "title": "From Grammar to JavaScript",
+    "text1": "From English teacher to passionate Full-Stack Developer, my journey has been a transformation — from words to code.",
+    "text2": "I started my career teaching English in Colombia, but curiosity and creativity led me to the world of web development.",
+    "text3": "Learning to code wasn't just a career change — it became a new way to think, solve problems, and keep growing.",
+    "text4": "Today, I combine my background in education with my technical skills to build projects that are functional, refined, and full of personality."
   },
   "profesional": {
     "title": "My Digital Art",
@@ -45,5 +47,310 @@
     "subtitle": "Every project is a new adventure, every collaboration an opportunity to create something extraordinary.",
     "projects": "View Projects",
     "contact": "Contact"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "beyourmotorbike": {
+      "name": "BeYourMotorbike",
+      "tagline": "Motorcycle Rental Platform in Tenerife",
+      "shortDescription": "Complete web platform that connects motorcycle owners with tourists for safe and profitable rentals. Users can rent premium motorcycles with online bookings, while owners earn money with their vehicles without complications.",
+      "fullDescription": "I developed a complete motorcycle rental platform from scratch using Next.js 15 with TypeScript, PostgreSQL and Prisma ORM. The project includes a robust authentication system with NextAuth.js, payment processing with Stripe (including deposits, automatic commissions and refunds), and a complete administrative panel for user, booking and analytics management.",
+      "challenges": {
+        "database": {
+          "title": "Database Design from Scratch",
+          "problem": "First time designing a complete relational schema for a marketplace with multiple interconnected entities.",
+          "solution": "I created 8+ interconnected tables with complex relationships between users, motorcycles, bookings and payments. I implemented granular roles (CLIENT, PROVIDER, ADMIN) and a scalable document system.",
+          "result": "Scalable system that efficiently handles all marketplace operations with complete referential integrity."
+        },
+        "payments": {
+          "title": "Complex Payment System",
+          "problem": "Integrate Stripe with automatic commission calculations, deposits, discounts and refunds.",
+          "solution": "I implemented webhooks to process payments in real time, calculate automatic commissions (40/60), handle 15% initial deposits and a complete refund system with tracking.",
+          "result": "Automatic payment system that processes transactions securely with precise financial calculations."
+        },
+        "i18n": {
+          "title": "Enterprise Internationalization",
+          "problem": "Create a multi-language platform with optimized SEO for three different markets.",
+          "solution": "I implemented next-intl with complete support for ES/EN/DE, configured hreflang for SEO, and created intelligent middleware for automatic redirection based on browser language.",
+          "result": "Completely internationalized platform with optimized SEO for three languages and fluid UX."
+        }
+      },
+      "features": {
+        "documents": {
+          "title": "Advanced Document System",
+          "description": "Allows scanning documents with mobile camera, cropping them with CropperJS and uploading them organized to Cloudinary. Includes ITV, insurance and license validation with access tokens for secure viewing."
+        },
+        "admin": {
+          "title": "Complete Administrative Panel",
+          "description": "Panel with user, motorcycle, booking and real-time analytics management. Includes marketing system with data export and refund management with states."
+        },
+        "payments": {
+          "title": "Automatic Payment Processing",
+          "description": "Complete Stripe integration that handles deposits (15% initial), automatic commission calculation (40/60), discount codes and refunds with complete tracking."
+        },
+        "bookings": {
+          "title": "Smart Booking System",
+          "description": "Dynamic calendars with real-time availability, automatic price calculation by duration, discount application and extras management (helmets, jackets, etc.)."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Development Time",
+          "value": "2 months"
+        },
+        "databaseTables": {
+          "label": "Database Tables",
+          "value": "8+"
+        },
+        "languages": {
+          "label": "Languages Implemented",
+          "value": "3"
+        },
+        "apiEndpoints": {
+          "label": "API Endpoints",
+          "value": "15+"
+        },
+        "typeSafety": {
+          "label": "Type Safety",
+          "value": "100%"
+        },
+        "adminSections": {
+          "label": "Admin Panel Sections",
+          "value": "6"
+        }
+      }
+    },
+    "remitt": {
+      "name": "Remitt",
+      "tagline": "International Money Transfer Comparison Platform",
+      "shortDescription": "Web application that helps people compare remittance fees and choose the best option for sending money internationally. Integrates multiple financial providers and offers real-time comparisons.",
+      "fullDescription": "I developed a complete remittance comparison platform from scratch using React 17 with JavaScript, Express.js and MongoDB. The application integrates the TransferWise API to get real-time data from more than 20 financial providers, including traditional banks and fintechs like Wise, Western Union, Remitly and WorldRemit. I implemented an authentication system with user registration, email notifications with Nodemailer, and a responsive interface with dark/light mode using Tailwind CSS.",
+      "challenges": {
+        "apiIntegration": {
+          "title": "Complex External API Integration",
+          "problem": "Integrate the TransferWise API to get real-time data from multiple remittance providers with different response formats and error handling.",
+          "solution": "I created a custom API service with Axios that handles TransferWise API queries, implemented robust error handling and data validation before showing results to the user.",
+          "result": "Reliable system that processes real-time remittance queries with more than 20 financial providers and handles API errors elegantly."
+        },
+        "userExperience": {
+          "title": "User Experience Optimization",
+          "problem": "Create an intuitive interface that allows non-technical users to easily compare complex remittance options with different fees and exchange rates.",
+          "solution": "I implemented a simplified form with country selectors with flags, real-time validation, loading states with custom spinner, and clear visual results showing fees and amounts received.",
+          "result": "Interface that reduces the complexity of comparing remittances to a few clicks, with clear visual feedback and intuitive navigation."
+        },
+        "dataManagement": {
+          "title": "Country and Provider Data Management",
+          "problem": "Handle an extensive database of countries with their currencies, base64 flags, and multiple financial providers with different URLs and configurations.",
+          "solution": "I created structured JSON files for countries and providers, implemented a data mapping system that connects countries with currencies and providers with their corresponding URLs.",
+          "result": "Scalable system that handles more than 100 countries and 20+ financial providers with updated data and easy maintenance."
+        }
+      },
+      "features": {
+        "comparisonEngine": {
+          "title": "Real-time Comparison Engine",
+          "description": "System that queries multiple financial providers simultaneously, calculates current fees and exchange rates, and presents results ordered by best value for the user."
+        },
+        "countrySelector": {
+          "title": "Advanced Country Selector",
+          "description": "Component with more than 100 countries, base64 flags, names in Spanish and English, and intelligent search that facilitates selection of origin and destination country."
+        },
+        "themeSystem": {
+          "title": "Dynamic Theme System",
+          "description": "Implementation of dark/light mode with React Context API, user preference persistence, and smooth transitions between themes with adaptive icons."
+        },
+        "userRegistration": {
+          "title": "Registration and Notification System",
+          "description": "User registration with email validation, automatic notification system via email using Nodemailer and OAuth2, and session management."
+        },
+        "responsiveDesign": {
+          "title": "Complete Responsive Design",
+          "description": "Adaptive interface that works perfectly on mobile, tablet and desktop, with hamburger navigation, responsive cards and optimization for different screen sizes."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Development Time",
+          "value": "3 weeks"
+        },
+        "providersIntegrated": {
+          "label": "Financial Providers Integrated",
+          "value": "20+"
+        },
+        "countriesSupported": {
+          "label": "Countries Supported",
+          "value": "100+"
+        },
+        "technologiesUsed": {
+          "label": "Main Technologies",
+          "value": "React, Express.js, MongoDB, Tailwind CSS"
+        }
+      }
+    },
+    "irongame": {
+      "name": "Irongame",
+      "tagline": "HTML5 Canvas Survival Game",
+      "shortDescription": "Web survival game developed with HTML5 Canvas and vanilla JavaScript where the player must survive 30 seconds against Python and Octopus enemies while collecting life bonuses.",
+      "fullDescription": "I developed a complete survival game from scratch using HTML5 Canvas, vanilla JavaScript and CSS3. The game implements a complex collision system, sprite animations, dynamic life system, enemies with directional movement, and directional shooting mechanics with trigonometric calculations.",
+      "challenges": {
+        "collisionSystem": {
+          "title": "Complex Collision System",
+          "problem": "Implement collision detection between multiple elements (player, enemies, bullets, bonuses) with different sizes and speeds in real time.",
+          "solution": "I created specific functions for each type of collision using rectangular coordinates and precise mathematical calculations to detect intersections between game elements.",
+          "result": "Robust system that handles real-time collisions between 6+ different types of elements without detection errors."
+        },
+        "enemyMovement": {
+          "title": "Enemy Movement System",
+          "problem": "Create enemies that move towards the player smoothly and naturally using mathematical calculations.",
+          "solution": "I implemented vector normalization algorithms and trigonometric calculations so enemies move directly towards the player with differentiated speeds.",
+          "result": "Two types of enemies with different speeds (PythonEnemy: 1, OctoEnemy: 2.5) that pursue the player smoothly using normalized vectors."
+        },
+        "spriteAnimation": {
+          "title": "Sprite Animation System",
+          "problem": "Create fluid animations for all game elements using sprites with different frame counts and synchronization.",
+          "solution": "I developed a frame-based animation system that synchronizes all animations with the main game loop at 60 FPS using frame indices.",
+          "result": "Synchronized animations for player (4 frames), enemies (5-7 frames), bullets (3 frames) and bonuses (4 frames) that work perfectly."
+        },
+        "gameLoop": {
+          "title": "Game Loop Optimization",
+          "problem": "Create an efficient game loop that handles rendering, logic, collisions and audio without affecting performance.",
+          "solution": "I implemented an optimized game loop with setInterval that executes all game operations every 20ms (50 FPS) with efficient memory management.",
+          "result": "Smooth game that maintains 60 FPS animation with efficient resource management and no memory leaks."
+        }
+      },
+      "features": {
+        "directionalShooting": {
+          "title": "Directional Shooting System",
+          "description": "Allows the player to shoot in any direction by clicking on the canvas, automatically calculating the angle and trajectory of the bullet using trigonometry (atan2, cos, sin)."
+        },
+        "dynamicLifeSystem": {
+          "title": "Dynamic Life System",
+          "description": "Visual life bar that changes in real time according to damage received, with predefined images representing different health levels of the player (0%, 20%, 40%, 60%, 80%, 100%)."
+        },
+        "audioIntegration": {
+          "title": "Complete Audio System",
+          "description": "Integration of sound effects for shots and background music with volume control (0.2) and automatic loop to enhance the player experience."
+        },
+        "countdownTimer": {
+          "title": "Timer System",
+          "description": "30-second countdown that controls the game duration and automatically activates the victory screen when time is completed, with 2-digit visual format."
+        },
+        "gameStates": {
+          "title": "Game State Management",
+          "description": "Complete state system that handles start, active game, game over and victory with specific screens, result images and restart functionality."
+        },
+        "spriteManagement": {
+          "title": "Sprite Management",
+          "description": "Complete system for loading and rendering sprites with different frame counts, synchronized animation and efficient memory management for all visual elements."
+        }
+      },
+      "metrics": {
+        "developmentTime": {
+          "label": "Development Time",
+          "value": "1 week"
+        },
+        "javascriptFiles": {
+          "label": "JavaScript Files",
+          "value": "10"
+        },
+        "gameElements": {
+          "label": "Game Elements",
+          "value": "6 types"
+        },
+        "collisionTypes": {
+          "label": "Collision Types",
+          "value": "4"
+        },
+        "fps": {
+          "label": "Frames per Second",
+          "value": "60 FPS"
+        },
+        "gameDuration": {
+          "label": "Game Duration",
+          "value": "30 seconds"
+        },
+        "spriteFrames": {
+          "label": "Animation Frames",
+          "value": "23 total"
+        }
+      }
+    },
+    "byte-studio": {
+      "name": "BYTE STUDIO",
+      "tagline": "Creative Studio for Visual Content and Web Development",
+      "shortDescription": "Digital platform that showcases our work in photography, videography and web development. Clients can explore our visual portfolio, see real projects and contact us directly to create content that makes their brand shine.",
+      "fullDescription": "I developed a complete portfolio platform from scratch using Next.js 15 (App Router) with TypeScript, implementing a file system-based media management system without the need for a database. The project includes interactive galleries with lazy loading, a complete internationalization system with next-intl (ES/EN), and a fully responsive design with advanced animations using Framer Motion.",
+      "challenges": {
+        "media": {
+          "title": "Media Management System without Database",
+          "problem": "Create a system that manages more than 48 multimedia files (24 images + 24 videos) without a database, but with dynamic metadata and efficient search.",
+          "solution": "I implemented a File System API-based system that automatically scans directories (/public/media/), generates dynamic metadata, and uses Server Components for initial rendering with zero database query overhead.",
+          "result": "Ultra-fast media system that loads metadata at build-time, with progressive lazy loading and automatic image optimization with Sharp."
+        },
+        "galleries": {
+          "title": "Interactive Galleries with Optimal Performance",
+          "problem": "Create galleries with 24+ multimedia elements each, maintaining optimal performance and fluid user experience.",
+          "solution": "I implemented lazy loading with Intersection Observer, infinite scroll, fullscreen modals with keyboard navigation, and image optimization with Next/Image and Sharp.",
+          "result": "Galleries that load instantly with infinite scroll, minimal memory consumption and optimized Core Web Vitals."
+        },
+        "ui": {
+          "title": "Real-time Interactive UI Components",
+          "problem": "Show advanced UI components with modern effects (glassmorphism, morphing, 3D) that work perfectly on all devices.",
+          "solution": "I created a modular component system with Framer Motion, parallax effects, cascade animations (stagger), and smooth transitions optimized for mobile-first.",
+          "result": "Impressive visual experience with fluid animations and premium effects that work perfectly on any device."
+        }
+      },
+      "features": {
+        "media": {
+          "title": "Automated Local Media System",
+          "description": "File System API automatically scans directories, generates thumbnails with Sharp, and creates dynamic metadata without database. Automatic image and video optimization with strategic caching."
+        },
+        "galleries": {
+          "title": "Advanced Interactive Galleries",
+          "description": "Lazy loading with Intersection Observer, infinite scroll, fullscreen modals with keyboard navigation (←/→), and zoom effects. Support for images and videos with immersive playback."
+        },
+        "contact": {
+          "title": "Smart Contact System",
+          "description": "Resend integration for sending emails with custom HTML templates, real-time validation, rate limiting in API Routes, and automatic confirmation."
+        },
+        "showcase": {
+          "title": "UI Components Showcase",
+          "description": "WebGallery with real-time interactive components: morphing buttons, glassmorphism cards, animated gradient inputs, 3D transformation icons, and parallax effects."
+        },
+        "effects": {
+          "title": "Premium Visual Effects",
+          "description": "InteractiveFirmament with animated particles, hero section with glassmorphism and sweeping light, smooth page transitions, and cascade animations with Framer Motion."
+        },
+        "optimization": {
+          "title": "Total Performance Optimization",
+          "description": "Server Components by default, strategic lazy loading, intelligent caching, automated optimization scripts, and complete SEO with dynamic metadata, robots.ts, sitemap.ts and hreflang."
+        }
+      },
+      "metrics": {
+        "multimediaFiles": {
+          "label": "Multimedia Files",
+          "value": "48+"
+        },
+        "languages": {
+          "label": "Languages Implemented",
+          "value": "2"
+        },
+        "uiComponents": {
+          "label": "UI Components",
+          "value": "20+"
+        },
+        "noDatabase": {
+          "label": "No Database",
+          "value": "100%"
+        },
+        "mobileFirst": {
+          "label": "Mobile-First",
+          "value": "✓"
+        },
+        "seoOptimization": {
+          "label": "SEO Optimization",
+          "value": "Total"
+        }
+      }
+    }
   }
 }

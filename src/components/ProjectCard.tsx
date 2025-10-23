@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -15,6 +16,7 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const params = useParams();
   const locale = params?.locale || "es";
+  const t = useTranslations();
 
   const getPrimaryColor = () => {
     switch (themeState) {
@@ -58,13 +60,13 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
   const getButtonStyle = () => {
     switch (themeState) {
       case 0:
-        return "bg-wine-primary text-white hover:bg-wine-600";
+        return "bg-primary-wine text-white hover:bg-wine-600";
       case 1:
-        return "bg-wine-primary text-white hover:bg-wine-600";
+        return "bg-primary-wine text-white hover:bg-wine-600";
       case 2:
         return "bg-white text-black hover:bg-gray-200";
       default:
-        return "bg-wine-primary text-white hover:bg-wine-600";
+        return "bg-primary-wine text-white hover:bg-wine-600";
     }
   };
 
@@ -79,10 +81,14 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="grid md:grid-cols-2 gap-8 p-8">
-        {/* Video Section - Vertical like mobile */}
+        {/* Video Section - Responsive based on project */}
         <div className="flex items-center justify-center">
           <motion.div
-            className="relative w-60 h-[500px] rounded-4xl overflow-hidden shadow-2xl"
+            className={`relative rounded-4xl overflow-hidden shadow-2xl ${
+              project.slug === "irongame"
+                ? "w-80 h-40 md:w-[500px] md:h-60" // Smaller on mobile, full size on desktop
+                : "w-60 h-[500px]" // Vertical proportions for other projects (240x500)
+            }`}
             animate={{
               scale: isHovered ? 1.05 : 1,
               rotateY: isHovered ? 5 : 0,
@@ -117,33 +123,33 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
               animate={{ x: isHovered ? 5 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              {project.name}
+              {t(`projects.${project.slug}.name`)}
             </motion.h3>
             <p
               className={`text-lg font-semibold mb-4 ${getSecondaryColor()} opacity-80`}
             >
-              {project.tagline}
+              {t(`projects.${project.slug}.tagline`)}
             </p>
             <p
               className={`text-base leading-relaxed mb-6 ${getSecondaryColor()}`}
             >
-              {project.shortDescription}
+              {t(`projects.${project.slug}.shortDescription`)}
             </p>
 
             {/* Key Features - Dynamic based on project */}
-            {project.features && project.features.length > 0 && (
-              <div className="mb-6 space-y-2">
-                {project.features.slice(0, 3).map((feature, index) => (
+            <div className="mb-6 space-y-2">
+              {Object.entries(t.raw(`projects.${project.slug}.features`))
+                .slice(0, 3)
+                .map(([key, feature], index) => (
                   <p
-                    key={index}
+                    key={key}
                     className={`text-sm font-semibold ${getPrimaryColor()}`}
                   >
                     {["📸", "🎥", "💻", "🌍", "📱", "🔒", "✨"][index % 7]}{" "}
                     {feature.title}
                   </p>
                 ))}
-              </div>
-            )}
+            </div>
           </div>
 
           {/* Buttons */}
@@ -170,9 +176,9 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
                 <motion.button
                   className={`w-full px-6 py-3 rounded-full text-base font-semibold border-2 transition-all duration-300 ${
                     themeState === 0
-                      ? "border-wine-primary text-wine-primary hover:bg-wine-primary hover:text-white"
+                      ? "border-primary-wine text-primary-wine hover:bg-primary-wine hover:text-white"
                       : themeState === 1
-                      ? "border-wine-primary text-wine-primary hover:bg-wine-primary hover:text-white"
+                      ? "border-primary-wine text-primary-wine hover:bg-primary-wine hover:text-white"
                       : "border-white text-white hover:bg-white hover:text-black"
                   }`}
                   whileHover={{ scale: 1.05 }}
