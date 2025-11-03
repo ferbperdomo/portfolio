@@ -30,8 +30,9 @@ export default function OptimizedVideo({
   const playAttemptedRef = useRef(false);
 
   // Detectar iOS Safari
-  const isIOSSafari = typeof window !== 'undefined' && 
-    /iPad|iPhone|iPod/.test(navigator.userAgent) && 
+  const isIOSSafari =
+    typeof window !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent) &&
     !(window as Window & { MSStream?: unknown }).MSStream;
 
   // Intersection Observer - carga automáticamente cuando entra en vista
@@ -44,7 +45,7 @@ export default function OptimizedVideo({
         entries.forEach((entry) => {
           const isIntersecting = entry.isIntersecting;
           setIsInView(isIntersecting);
-          
+
           if (isIntersecting) {
             setShouldLoad(true);
           } else {
@@ -57,7 +58,7 @@ export default function OptimizedVideo({
       },
       {
         threshold: isIOSSafari ? 0.1 : 0.5, // Threshold más bajo en iOS para mejor performance
-        rootMargin: isIOSSafari ? "50px" : "100px", // Menos margin en iOS
+        rootMargin: isIOSSafari ? "150px" : "100px", // Más margin en iOS para cargar antes
       }
     );
 
@@ -91,7 +92,7 @@ export default function OptimizedVideo({
     if (autoPlay && muted) {
       playAttemptedRef.current = true;
       const playPromise = video.play();
-      
+
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
           // Silenciar errores de autoplay en iOS - es esperado
@@ -127,7 +128,7 @@ export default function OptimizedVideo({
     return () => {
       if (video) {
         video.pause();
-        video.src = '';
+        video.src = "";
         video.load();
       }
     };
@@ -161,7 +162,7 @@ export default function OptimizedVideo({
         animate={{ opacity: isLoaded && !hasError ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        {shouldLoad && isInView && (
+        {shouldLoad && (
           <source
             src={
               src.endsWith(".webm") ? src : `${src.replace(".mp4", "")}.webm`
