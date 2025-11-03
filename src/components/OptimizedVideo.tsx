@@ -23,23 +23,11 @@ export default function OptimizedVideo({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Detectar si es móvil
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // Intersection Observer - carga según dispositivo
+  // Intersection Observer - carga automáticamente cuando entra en vista
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -49,11 +37,7 @@ export default function OptimizedVideo({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            // En móvil: cargar automáticamente cuando está visible
-            // En desktop: cargar solo con hover
-            if (isMobile || isHovered) {
-              setShouldLoad(true);
-            }
+            setShouldLoad(true);
           }
         });
       },
@@ -70,20 +54,7 @@ export default function OptimizedVideo({
         observerRef.current.disconnect();
       }
     };
-  }, [isMobile, isHovered]);
-
-  // Cargar video cuando hay hover (desktop) o está en vista (móvil)
-  useEffect(() => {
-    if (isInView && !shouldLoad) {
-      if (isMobile) {
-        // En móvil: cargar automáticamente cuando está visible
-        setShouldLoad(true);
-      } else if (isHovered) {
-        // En desktop: cargar solo con hover
-        setShouldLoad(true);
-      }
-    }
-  }, [isInView, isHovered, isMobile, shouldLoad]);
+  }, []);
 
   // Cargar video cuando shouldLoad cambia
   useEffect(() => {
@@ -92,13 +63,6 @@ export default function OptimizedVideo({
 
     video.load();
   }, [shouldLoad]);
-
-  // También cargar al hacer click/tap (móviles)
-  const handleInteraction = () => {
-    if (isInView && !shouldLoad) {
-      setShouldLoad(true);
-    }
-  };
 
   const handleLoadedData = () => {
     setIsLoaded(true);
@@ -111,23 +75,10 @@ export default function OptimizedVideo({
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={handleInteraction}
-    >
+    <div ref={containerRef} className="relative w-full h-full">
       {/* Placeholder mientras carga */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center z-10">
-          {!isHovered && isInView && !isMobile && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-gray-400 text-sm font-medium">
-                Hover para reproducir
-              </div>
-            </div>
-          )}
           {shouldLoad && (
             <div className="w-8 h-8 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
           )}
