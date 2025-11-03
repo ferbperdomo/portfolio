@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface ThemeToggleProps {
@@ -57,38 +58,49 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const SunIcon = () => (
-    <motion.img
-      src="/sun.png"
-      alt="Sol"
-      width="28"
-      height="28"
+    <motion.div
       className="object-contain pointer-events-none"
       style={{ opacity: sunOpacity }}
-      loading="eager"
-      fetchPriority="high"
-    />
+    >
+      <Image
+        src="/sun.png"
+        alt="Sol"
+        width={28}
+        height={28}
+        priority
+        fetchPriority="high"
+      />
+    </motion.div>
   );
 
   const MoonIcon = () => (
-    <motion.img
-      src="/moon.png"
-      alt="Luna"
-      width="28"
-      height="28"
+    <motion.div
       className="object-contain pointer-events-none"
       style={{ opacity: moonOpacity }}
-    />
+    >
+      <Image
+        src="/moon.png"
+        alt="Luna"
+        width={28}
+        height={28}
+        priority
+      />
+    </motion.div>
   );
 
   const StarIcon = () => (
-    <motion.img
-      src="/earring.png"
-      alt="Earring"
-      width="28"
-      height="28"
+    <motion.div
       className="object-contain pointer-events-none"
       style={{ opacity: starOpacity }}
-    />
+    >
+      <Image
+        src="/earring.png"
+        alt="Earring"
+        width={28}
+        height={28}
+        priority
+      />
+    </motion.div>
   );
 
   if (!isInitialized) {

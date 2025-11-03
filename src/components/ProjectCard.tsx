@@ -104,7 +104,6 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
               loop
               muted
               playsInline
-              preload="metadata"
             />
           </motion.div>
         </div>

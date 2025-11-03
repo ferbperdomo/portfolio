@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     id: "1",
     slug: "beyourmotorbike",
-    videoUrl: "/beyourmotorbike.mp4",
+    videoUrl: "/beyourmotorbike.webm",
     projectUrl: "https://beyourmotorbike.com",
     technologies: [
       { name: "Next.js 15", category: "frontend" },
@@ -105,8 +105,8 @@ const documentSchema = z.object({
   {
     id: "2",
     slug: "byte-studio",
-    videoUrl: "/bytestudio.mp4",
-    projectUrl: "https://bytestudio.com",
+    videoUrl: "/bytestudio.webm",
+    projectUrl: "https://byteandbite-omega.vercel.app",
     technologies: [
       { name: "Next.js 15 (App Router)", category: "frontend" },
       { name: "TypeScript", category: "frontend" },
@@ -168,8 +168,8 @@ return (
   {
     id: "3",
     slug: "remitt",
-    videoUrl: "/remitt.mp4",
-    projectUrl: "https://remitt-comparison.vercel.app",
+    videoUrl: "/remitt.webm",
+    projectUrl: "https://remitt.vercel.app",
     githubUrl: "https://github.com/cristianperdomo/remitt-comparison",
     technologies: [
       { name: "React 17", category: "frontend" },
@@ -299,8 +299,8 @@ export const useTheme = () => {
   {
     id: "4",
     slug: "irongame",
-    videoUrl: "/irongame.mp4",
-    projectUrl: "https://irongame.vercel.app",
+    videoUrl: "/irongame.webm",
+    projectUrl: "https://ferbperdomo.github.io/irongame/",
     githubUrl: "https://github.com/cristianperdomo/irongame",
     technologies: [
       { name: "HTML5 Canvas", category: "frontend" },
