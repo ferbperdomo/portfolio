@@ -49,6 +49,20 @@
     "projects": "Ver Proyectos",
     "contact": "Contactar"
   },
+  "projectPage": {
+    "challengeTitle": "El Desafío",
+    "techStackTitle": "Stack Tecnológico",
+    "challengesTitle": "Desafíos Técnicos Superados",
+    "featuresTitle": "Funcionalidades Destacadas",
+    "metricsTitle": "Resultados del Proyecto",
+    "codeTitle": "Código Destacado",
+    "backToProjects": "Volver a Proyectos",
+    "viewLive": "Ver Proyecto Live",
+    "challenge": "Desafío:",
+    "solution": "Solución:",
+    "result": "Resultado:",
+    "projectNotFound": "Proyecto no encontrado"
+  },
   "projects": {
     "title": "Proyectos Destacados",
     "beyourmotorbike": {
@@ -119,6 +133,18 @@
           "label": "Secciones del Panel Admin",
           "value": "6"
         }
+      },
+      "codeSnippets": {
+        "jwt": {
+          "title": "JWT con Renovación Automática y Validación de Usuario",
+          "description": "Sistema JWT avanzado con verificación automática de usuarios en base de datos y renovación proactiva de tokens para mantener sesiones seguras.",
+          "code": "// JWT con renovación automática y validación de usuario\nasync jwt({ token, user }) {\n  if (user) {\n    token.id = user.id;\n    token.role = user.role;\n    token.iat = Math.floor(Date.now() / 1000);\n    token.exp = Math.floor(Date.now() / 1000) + 24 * 60 * 60;\n  }\n\n  // Verificar que el usuario existe en la base de datos\n  if (token.id) {\n    try {\n      const userExists = await prisma.user.findUnique({\n        where: { id: token.id as string },\n        select: { id: true, role: true },\n      });\n\n      if (!userExists) {\n        return { ...token, error: \"UserNotFound\" };\n      }\n\n      token.role = userExists.role;\n    } catch (error) {\n      console.error(\"Error verifying user existence:\", error);\n      return { ...token, error: \"UserVerificationFailed\" };\n    }\n  }\n\n  // Renovar el token si está próximo a expirar (2 horas antes)\n  if (\n    token.exp &&\n    typeof token.exp === \"number\" &&\n    token.exp < Math.floor(Date.now() / 1000) + 2 * 60 * 60\n  ) {\n    token.exp = Math.floor(Date.now() / 1000) + 24 * 60 * 60;\n  }\n\n  return token;\n}"
+        },
+        "documents": {
+          "title": "Sistema de Documentos con Validación",
+          "description": "Validación robusta de documentos con Zod para garantizar la integridad de los datos antes de la subida.",
+          "code": "// Sistema de documentos con validación\nconst documentSchema = z.object({\n  documentType: z.enum(['id', 'license', 'itv', 'insurance']),\n  side: z.enum(['front', 'back']),\n  file: z.instanceof(File),\n  expiryDate: z.date().optional()\n});"
+        }
       }
     },
     "remitt": {
@@ -184,6 +210,23 @@
         "technologiesUsed": {
           "label": "Tecnologías Principales",
           "value": "React, Express.js, MongoDB, Tailwind CSS"
+        }
+      },
+      "codeSnippets": {
+        "apiIntegration": {
+          "title": "Integración de API Externa con Manejo de Errores",
+          "description": "Servicio robusto que maneja consultas a la API de TransferWise con validación de datos y manejo de errores elegante.",
+          "code": "// Servicio de API para consultas de remesas\nconst axios = require('axios');\n\nclass RemittanceService {\n  async getRates(fromCountry, toCountry, amount) {\n    try {\n      const response = await axios.get(`${API_BASE_URL}/rates`, {\n        params: { from: fromCountry, to: toCountry, amount }\n      });\n      \n      return this.validateAndFormatRates(response.data);\n    } catch (error) {\n      console.error('API Error:', error.message);\n      throw new Error('Error al obtener tasas de cambio');\n    }\n  }\n  \n  validateAndFormatRates(data) {\n    return data.providers\n      .filter(provider => provider.rate > 0)\n      .sort((a, b) => a.totalCost - b.totalCost);\n  }\n}"
+        },
+        "countrySelector": {
+          "title": "Selector de Países con Banderas Base64",
+          "description": "Componente interactivo con más de 100 países, banderas en base64 y búsqueda inteligente.",
+          "code": "// Componente de selector de países con banderas\nconst CountrySelector = ({ countries, onSelect, placeholder }) => {\n  const [searchTerm, setSearchTerm] = useState('');\n  \n  const filteredCountries = countries.filter(country =>\n    country.name.toLowerCase().includes(searchTerm.toLowerCase())\n  );\n  \n  return (\n    <div className=\"relative\">\n      <input\n        type=\"text\"\n        placeholder={placeholder}\n        value={searchTerm}\n        onChange={(e) => setSearchTerm(e.target.value)}\n        className=\"w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500\"\n      />\n      <div className=\"absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg\">\n        {filteredCountries.map(country => (\n          <div\n            key={country.code}\n            onClick={() => onSelect(country)}\n            className=\"flex items-center p-3 hover:bg-gray-100 cursor-pointer\"\n          >\n            <img \n              src={`data:image/png;base64,${country.flag}`}\n              alt={country.name}\n              className=\"w-6 h-4 mr-3\"\n            />\n            <span>{country.name}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};"
+        },
+        "themeSystem": {
+          "title": "Sistema de Temas con Context API",
+          "description": "Sistema completo de temas con persistencia en localStorage y transiciones suaves.",
+          "code": "// Context para manejo de temas\nconst ThemeContext = createContext();\n\nexport const ThemeProvider = ({ children }) => {\n  const [theme, setTheme] = useState(() => {\n    const savedTheme = localStorage.getItem('theme');\n    return savedTheme || 'light';\n  });\n  \n  useEffect(() => {\n    document.documentElement.classList.toggle('dark', theme === 'dark');\n    localStorage.setItem('theme', theme);\n  }, [theme]);\n  \n  const toggleTheme = () => {\n    setTheme(prev => prev === 'light' ? 'dark' : 'light');\n  };\n  \n  return (\n    <ThemeContext.Provider value={{ theme, toggleTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n};\n\n// Hook personalizado para usar el tema\nexport const useTheme = () => {\n  const context = useContext(ThemeContext);\n  if (!context) {\n    throw new Error('useTheme must be used within ThemeProvider');\n  }\n  return context;\n};"
         }
       }
     },
@@ -273,6 +316,23 @@
           "label": "Frames de Animación",
           "value": "23 total"
         }
+      },
+      "codeSnippets": {
+        "collisions": {
+          "title": "Sistema de Colisiones con Cálculos Matemáticos",
+          "description": "Sistema robusto de detección de colisiones que maneja 4 tipos diferentes de interacciones entre elementos del juego usando cálculos matemáticos precisos.",
+          "code": "// Sistema de detección de colisiones\nfunction checkCollision(obj1, obj2) {\n  const dx = obj1.x - obj2.x;\n  const dy = obj1.y - obj2.y;\n  const distance = Math.sqrt(dx * dx + dy * dy);\n  return distance < (obj1.radius + obj2.radius);\n}\n\n// Colisión específica para balas con enemigos\nfunction checkBulletEnemyCollision(bullet, enemy) {\n  if (checkCollision(bullet, enemy)) {\n    enemy.health -= bullet.damage;\n    bullet.destroy = true;\n    return true;\n  }\n  return false;\n}\n\n// Colisión jugador con bonificaciones\nfunction checkPlayerBonusCollision(player, bonus) {\n  if (checkCollision(player, bonus)) {\n    player.health = Math.min(100, player.health + bonus.healAmount);\n    bonus.destroy = true;\n    return true;\n  }\n  return false;\n}"
+        },
+        "enemyMovement": {
+          "title": "Sistema de Movimiento de Enemigos con Vectores",
+          "description": "Sistema de movimiento direccional que hace que los enemigos persigan al jugador usando vectores normalizados y velocidades diferenciadas.",
+          "code": "// Movimiento de enemigos hacia el jugador\nclass Enemy {\n  constructor(x, y, speed, type) {\n    this.x = x;\n    this.y = y;\n    this.speed = speed;\n    this.type = type;\n  }\n  \n  update(player) {\n    // Calcular dirección hacia el jugador\n    const dx = player.x - this.x;\n    const dy = player.y - this.y;\n    const distance = Math.sqrt(dx * dx + dy * dy);\n    \n    // Normalizar vector y aplicar velocidad\n    if (distance > 0) {\n      this.x += (dx / distance) * this.speed;\n      this.y += (dy / distance) * this.speed;\n    }\n  }\n}\n\n// Crear enemigos con diferentes velocidades\nconst pythonEnemy = new Enemy(x, y, 1, 'python');\nconst octoEnemy = new Enemy(x, y, 2.5, 'octopus');"
+        },
+        "directionalShooting": {
+          "title": "Sistema de Disparo Direccional con Trigonometría",
+          "description": "Sistema de disparo que calcula automáticamente la dirección y trayectoria de las balas usando trigonometría (atan2, cos, sin) basado en la posición del clic del mouse.",
+          "code": "// Sistema de disparo direccional\nclass Bullet {\n  constructor(x, y, targetX, targetY, speed) {\n    this.x = x;\n    this.y = y;\n    this.speed = speed;\n    \n    // Calcular ángulo hacia el objetivo\n    const dx = targetX - x;\n    const dy = targetY - y;\n    this.angle = Math.atan2(dy, dx);\n  }\n  \n  update() {\n    // Mover bala usando trigonometría\n    this.x += Math.cos(this.angle) * this.speed;\n    this.y += Math.sin(this.angle) * this.speed;\n  }\n}\n\n// Manejar clic del mouse para disparar\ncanvas.addEventListener('click', (e) => {\n  const rect = canvas.getBoundingClientRect();\n  const targetX = e.clientX - rect.left;\n  const targetY = e.clientY - rect.top;\n  \n  const bullet = new Bullet(player.x, player.y, targetX, targetY, 5);\n  bullets.push(bullet);\n});"
+        }
       }
     },
     "byte-studio": {
@@ -350,6 +410,18 @@
         "seoOptimization": {
           "label": "Optimización SEO",
           "value": "Total"
+        }
+      },
+      "codeSnippets": {
+        "mediaSystem": {
+          "title": "Sistema de Medios con File System",
+          "description": "Sistema que genera metadata dinámica de medios sin base de datos, utilizando File System API.",
+          "code": "// Escaneo automático de medios desde file system\nconst mediaFiles = await fs.readdir(path.join(process.cwd(), 'public/media'));\nconst mediaData = await Promise.all(\n  mediaFiles.map(async (file) => {\n    const stats = await fs.stat(path.join('public/media', file));\n    return {\n      filename: file,\n      size: stats.size,\n      modified: stats.mtime,\n      type: file.endsWith('.mp4') ? 'video' : 'image'\n    };\n  })\n);"
+        },
+        "lazyLoading": {
+          "title": "Lazy Loading con Intersection Observer",
+          "description": "Implementación de lazy loading que carga contenido solo cuando entra en viewport, optimizando rendimiento.",
+          "code": "// Lazy loading optimizado con Framer Motion\nconst { ref, inView } = useInView({\n  threshold: 0.1,\n  triggerOnce: true\n});\n\nreturn (\n  <motion.div\n    ref={ref}\n    initial={{ opacity: 0, y: 50 }}\n    animate={inView ? { opacity: 1, y: 0 } : {}}\n    transition={{ duration: 0.6 }}\n  >\n    {inView && <MediaGallery items={media} />}\n  </motion.div>\n);"
         }
       }
     }

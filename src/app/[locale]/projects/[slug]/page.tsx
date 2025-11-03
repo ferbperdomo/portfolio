@@ -39,13 +39,13 @@ export default function ProjectDetailPage() {
         <Navbar />
         <div className="pt-32 px-4 text-center">
           <h1 className={`text-4xl font-bold mb-4 ${getPrimaryColor()}`}>
-            Proyecto no encontrado
+            {t("projectPage.projectNotFound")}
           </h1>
           <button
             onClick={() => router.back()}
             className="px-6 py-3 rounded-full bg-primary-wine text-white hover:bg-wine-600 transition-all"
           >
-            Volver
+            {t("projectPage.backToProjects")}
           </button>
         </div>
       </div>
@@ -209,7 +209,7 @@ export default function ProjectDetailPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Ver Proyecto Live
+                  {t("projectPage.viewLive")}
                 </motion.button>
               </a>
             )}
@@ -238,7 +238,7 @@ export default function ProjectDetailPage() {
             <h2
               className={`text-3xl md:text-4xl font-bold mb-6 ${getPrimaryColor()}`}
             >
-              El Desafío
+              {t("projectPage.challengeTitle")}
             </h2>
             <p className={`text-lg leading-relaxed ${getSecondaryColor()}`}>
               {t(`projects.${project.slug}.fullDescription`)}
@@ -274,7 +274,7 @@ export default function ProjectDetailPage() {
             <h2
               className={`text-3xl md:text-4xl font-bold mb-8 text-center ${getPrimaryColor()}`}
             >
-              Stack Tecnológico
+              {t("projectPage.techStackTitle")}
             </h2>
             <div
               className={`rounded-3xl p-8 md:p-12 border-2 backdrop-blur-sm ${getCardBackground()}`}
@@ -335,7 +335,7 @@ export default function ProjectDetailPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Desafíos Técnicos Superados
+            {t("projectPage.challengesTitle")}
           </motion.h2>
           <div className="space-y-8">
             {Object.entries(
@@ -359,7 +359,7 @@ export default function ProjectDetailPage() {
                     <h4
                       className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
                     >
-                      Desafío:
+                      {t("projectPage.challenge")}
                     </h4>
                     <p className={`${getSecondaryColor()}`}>
                       {challenge.problem}
@@ -369,7 +369,7 @@ export default function ProjectDetailPage() {
                     <h4
                       className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
                     >
-                      Solución:
+                      {t("projectPage.solution")}
                     </h4>
                     <p className={`${getSecondaryColor()}`}>
                       {challenge.solution}
@@ -379,7 +379,7 @@ export default function ProjectDetailPage() {
                     <h4
                       className={`text-lg font-semibold mb-2 ${getPrimaryColor()}`}
                     >
-                      Resultado:
+                      {t("projectPage.result")}
                     </h4>
                     <p className={`${getSecondaryColor()}`}>
                       {challenge.result}
@@ -417,7 +417,7 @@ export default function ProjectDetailPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Funcionalidades Destacadas
+            {t("projectPage.featuresTitle")}
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-8">
             {Object.entries(
@@ -472,7 +472,7 @@ export default function ProjectDetailPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Resultados del Proyecto
+            {t("projectPage.metricsTitle")}
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {Object.entries(
@@ -528,37 +528,54 @@ export default function ProjectDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Código Destacado
+              {t("projectPage.codeTitle")}
             </motion.h2>
             <div className="space-y-8">
-              {project.codeSnippets.map((snippet, index) => (
-                <motion.div
-                  key={index}
-                  className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <h3 className={`text-xl font-bold mb-3 ${getPrimaryColor()}`}>
-                    {snippet.title}
-                  </h3>
-                  {snippet.description && (
-                    <p className={`mb-4 ${getSecondaryColor()}`}>
-                      {snippet.description}
-                    </p>
-                  )}
-                  <pre
-                    className={`p-6 rounded-2xl overflow-x-auto ${
-                      themeState === 2 ? "bg-black/50" : "bg-black/80"
-                    }`}
+              {project.codeSnippets.map((snippet, index) => {
+                // Mapeo de índices a claves de traducción por proyecto
+                const snippetKeys: Record<string, string[]> = {
+                  "beyourmotorbike": ["jwt", "documents"],
+                  "byte-studio": ["mediaSystem", "lazyLoading"],
+                  "remitt": ["apiIntegration", "countrySelector", "themeSystem"],
+                  "irongame": ["collisions", "enemyMovement", "directionalShooting"],
+                };
+                
+                const snippetKey = snippetKeys[project.slug]?.[index];
+                const translatedSnippet = snippetKey
+                  ? getRawTranslations(
+                      `projects.${project.slug}.codeSnippets.${snippetKey}`
+                    ) as { title: string; description: string; code?: string }
+                  : null;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className={`rounded-3xl p-8 border-2 backdrop-blur-sm ${getCardBackground()}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <code className="text-green-400 text-sm font-mono">
-                      {snippet.code}
-                    </code>
-                  </pre>
-                </motion.div>
-              ))}
+                    <h3 className={`text-xl font-bold mb-3 ${getPrimaryColor()}`}>
+                      {translatedSnippet?.title || snippet.title}
+                    </h3>
+                    {snippet.description && (
+                      <p className={`mb-4 ${getSecondaryColor()}`}>
+                        {translatedSnippet?.description || snippet.description}
+                      </p>
+                    )}
+                    <pre
+                      className={`p-6 rounded-2xl overflow-x-auto ${
+                        themeState === 2 ? "bg-black/50" : "bg-black/80"
+                      }`}
+                    >
+                      <code className="text-green-400 text-sm font-mono">
+                        {translatedSnippet?.code || snippet.code}
+                      </code>
+                    </pre>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -609,7 +626,7 @@ export default function ProjectDetailPage() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Volver a Proyectos
+          {t("projectPage.backToProjects")}
         </motion.button>
       </section>
     </div>
