@@ -5,6 +5,7 @@
     "home": "Home",
     "about": "About me",
     "projects": "Projects",
+    "whyFerbperdomo": "Why ferbperdomo",
     "contact": "Contact"
   },
   "navigation": {
@@ -48,6 +49,15 @@
     "subtitle": "I love projects with personality and purpose. If you have an idea, let's talk and see how to make it reality.",
     "projects": "View Projects",
     "contact": "Contact"
+  },
+  "whyFerbperdomo": {
+    "title": "Why ferbperdomo",
+    "paragraph1": "When I lived in Colombia, my friends used to call me by my second name, Fernando —and over time, that turned into Fer.",
+    "paragraph2": "Years later, when Phineas and Ferb became a hit, people started calling me Ferb because they said we looked alike (big nose, curious mind, and always ready with a random fact). The nickname stuck… and I made it part of my identity.",
+    "paragraph3": "That's how Fer became Ferb, and eventually ferbperdomo —a mix of my name, my story, and a character who's always building something clever.",
+    "paragraph4": "Unlike Ferb, I actually talk quite a lot —being a former teacher taught me how to explain things clearly and connect through communication— but I share his calm, creative side when I'm focused on a project.",
+    "funFact": "Fun fact: in the show, Ferb speaks only about 8% of the time, which is still more than the percentage of people who actually read \"About\" sections on websites.",
+    "backButton": "Back"
   },
   "projectPage": {
     "challengeTitle": "The Challenge",

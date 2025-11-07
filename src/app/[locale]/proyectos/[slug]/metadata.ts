@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getProjectBySlug } from "../../../../data/projects";
-import { getLocalizedRouteName } from "../../../../utils/routeMapping";
 
 export async function generateMetadata({
   params,
@@ -37,7 +36,7 @@ export async function generateMetadata({
       title: `${projectName} - Cristian Perdomo`,
       description: projectDescription,
       type: "website",
-      url: `https://ferbperdomo.com/${locale}/${getLocalizedRouteName("projects", locale)}/${slug}`,
+      url: `https://ferbperdomo.com/${locale}/proyectos/${slug}`,
       images: [
         {
           url: `/projects/${slug}-og.png`,
@@ -55,3 +54,11 @@ export async function generateMetadata({
     },
   };
 }
+
+
+
+
+
+
+
+

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import type { Project } from "../data/projects";
+import { getLocalizedRouteName } from "../utils/routeMapping";
 import OptimizedVideo from "./OptimizedVideo";
 
 interface ProjectCardProps {
@@ -150,7 +151,7 @@ export default function ProjectCard({ project, themeState }: ProjectCardProps) {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href={`/${locale}/projects/${project.slug}`}
+              href={`/${locale}/${getLocalizedRouteName("projects", locale as string)}/${project.slug}`}
               className="flex-1"
             >
               <motion.button

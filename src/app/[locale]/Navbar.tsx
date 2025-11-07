@@ -7,10 +7,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LanguageSelector } from "../../components/LanguageSelector";
 import { useTheme } from "../../contexts/ThemeContext";
+import { getLocalizedRouteName } from "../../utils/routeMapping";
+import { useParams } from "next/navigation";
 
 export default function Navbar() {
   const t = useTranslations();
   const pathname = usePathname();
+  const params = useParams();
+  const locale = params?.locale || pathname.split("/")[1] || "es";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -27,6 +31,7 @@ export default function Navbar() {
   const getHomeHref = () => (isHomePage ? "#" : "/");
   const getAboutHref = () => (isHomePage ? "#about" : "/#about");
   const getProjectsHref = () => (isHomePage ? "#projects" : "/#projects");
+  const getWhyFerbperdomoHref = () => `/${locale}/${getLocalizedRouteName("why-ferbperdomo", locale as string)}`;
   const getContactHref = () => (isHomePage ? "#cta" : "/#cta");
 
   // Close mobile menu when switching to desktop
@@ -108,6 +113,16 @@ export default function Navbar() {
             }`}
           >
             {t("menu.projects")}
+          </Link>
+          <Link
+            href={getWhyFerbperdomoHref()}
+            className={`text-lg font-medium transition-colors hover:scale-105 text-right ${
+              isDarkMode
+                ? "text-white hover:text-gray-300"
+                : "text-gray-900 hover:text-gray-600"
+            }`}
+          >
+            {t("menu.whyFerbperdomo")}
           </Link>
           <Link
             href={getContactHref()}
@@ -193,6 +208,17 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t("menu.projects")}
+            </Link>
+            <Link
+              href={getWhyFerbperdomoHref()}
+              className={`text-2xl font-medium transition-colors ${
+                isDarkMode
+                  ? "text-white hover:text-gray-300"
+                  : "text-gray-900 hover:text-gray-600"
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t("menu.whyFerbperdomo")}
             </Link>
             <Link
               href={getContactHref()}

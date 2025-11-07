@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "../contexts/ThemeContext";
+import { translateRoute } from "../utils/routeMapping";
 
 export function LanguageSelector() {
   const router = useRouter();
@@ -39,10 +40,10 @@ export function LanguageSelector() {
   };
 
   const handleLanguageChange = (newLocale: string) => {
-    // Remove the current locale from the pathname
-    const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
-    // Navigate to the new locale
-    router.push(`/${newLocale}${pathWithoutLocale}`);
+    // Translate the route including route name translation
+    const translatedPath = translateRoute(pathname, newLocale);
+    // Navigate to the translated path
+    router.push(translatedPath);
   };
 
   return (

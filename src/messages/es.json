@@ -5,6 +5,7 @@
     "home": "Inicio",
     "about": "Sobre mi",
     "projects": "Proyectos",
+    "whyFerbperdomo": "Por qué ferbperdomo",
     "contact": "Contacto"
   },
   "navigation": {
@@ -48,6 +49,15 @@
     "subtitle": "Me encantan los proyectos con personalidad y propósito. Si tienes una idea, hablemos y veamos cómo hacerla realidad.",
     "projects": "Ver Proyectos",
     "contact": "Contactar"
+  },
+  "whyFerbperdomo": {
+    "title": "Por qué ferbperdomo",
+    "paragraph1": "Cuando vivía en Colombia, mis amigos solían llamarme por mi segundo nombre, Fernando, y con el tiempo se quedó en Fer.",
+    "paragraph2": "Años después, con el boom de Phineas y Ferb, muchos empezaron a decirme Ferb porque decían que nos parecíamos (nariz grande, mente curiosa y siempre con algún dato curioso que nadie pidió). El apodo se quedó… y terminé haciéndolo parte de mi identidad.",
+    "paragraph3": "Así fue como Fer se convirtió en Ferb, y finalmente en ferbperdomo: una mezcla entre mi nombre, mi historia y ese personaje que siempre está construyendo algo ingenioso.",
+    "paragraph4": "A diferencia de Ferb, yo sí hablo (bastante, de hecho :)). Haber sido profesor me enseñó a comunicar con claridad y a conectar a través de las palabras, aunque conservo su parte tranquila y creativa cuando me concentro en un proyecto.",
+    "funFact": "Dato curioso: en la serie, Ferb solo habla el 8% del tiempo… lo cual sigue siendo más que el porcentaje de gente que realmente lee las secciones \"Sobre mí\" en las webs.",
+    "backButton": "Volver"
   },
   "projectPage": {
     "challengeTitle": "El Desafío",

@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projectPages = projects.flatMap((project) => [
     {
-      url: `${baseUrl}/es/projects/${project.slug}`,
+      url: `${baseUrl}/es/proyectos/${project.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
